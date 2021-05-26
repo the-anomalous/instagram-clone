@@ -5,3 +5,7 @@
 .input-login{
   @apply outline-none border border-gray-primary bg-gray-background rounded-sm p-2 w-65 my-1
 }
+
+.btn-reset{
+  @apply focus:outline-none border-none
+}

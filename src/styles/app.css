@@ -18519,6 +18519,15 @@ video {
   width: 17rem
 }
 
+.btn-reset{
+  border-style: none
+}
+
+.btn-reset:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 @media (max-width: 500px) {
   .sm\:container {
     width: 100%;

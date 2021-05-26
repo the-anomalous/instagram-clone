@@ -8,16 +8,16 @@ const LoginPage = () => {
     }, [])
 
   return (
-    <div className='w-screen bg-gray-background'>
+    <section className='w-screen bg-gray-background'>
       <div className='container flex justify-center content-center items-center align-middle max-w-screen-md h-screen mx-auto'>
         
-        <div className="flex w-3/5 sm:hidden md:hidden">
+        <figure className="flex w-3/5 sm:hidden md:hidden">
           <img src={profile} alt="Instagram Profile on iPhone" />
-        </div>
+        </figure>
 
         <LoginForm/>
       </div>
-    </div>
+    </section>
   )
 }
 

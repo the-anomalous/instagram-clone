@@ -13,17 +13,19 @@ const LoginForm = () => {
   const [error, setError] = useState('')
   const history = useHistory()
 
-  const handleFacebookSignIn = async () => {
-    await signInWithFacebook();
-  }
+  const handleFacebookSignIn = async () => await signInWithFacebook();
+
+  const handleForgotPassword = async () => history.push(routes.RESET_PASSWORD)
+  
 
   return (
-    <div className='flex flex-col justify-center items-center sm:w-4/5 md:4/5 '>
-      
-      <div className='flex flex-col justify-center items-center rounded-sm bg-white border border-gray-primary p-4 text-sm '>
-        <div className='my-4 mx-16 w-44'>
+    <article className='flex flex-col justify-center items-center sm:w-4/5 md:4/5 '>
+      <h1 hidden>Instagram</h1>
+
+      <section className='flex flex-col justify-center items-center rounded-sm bg-white border border-gray-primary p-4 text-sm '>
+        <figure className='my-4 mx-16 w-44'>
           <img src={logo} alt="instagram logo" />
-        </div>
+        </figure>
         
         {error && <p className='text-red-primary'>{error}</p> }
         
@@ -36,7 +38,7 @@ const LoginForm = () => {
         </div>
 
         <button
-          className='border-none outline-none my-3 focus:outline-none'
+          className='outline-none my-3 btn-reset'
           onClick={handleFacebookSignIn}
         >
           <div className='text-blue-medium flex flex-row font-semibold' >
@@ -45,15 +47,20 @@ const LoginForm = () => {
           </div>
         </button>
         
-      </div>
+        <button
+          className='btn-reset my-2 text-blue-medium text-xs font-semibold'
+          onClick={handleForgotPassword}
+        >
+          Forgot password?</button>
+      </section>
 
-      <div className='bg-white border border-gray-primary w-81 text-center rounded-sm mt-7 text-sm '>
+      <section className='bg-white border border-gray-primary w-81 text-center rounded-sm mt-7 text-sm '>
         <div className='my-4'>
           <p>Don't have an account? <Link to={routes.SIGN_UP} className='font-semibold text-blue-medium'>Sign up</Link> </p>
         </div>
-      </div>
+      </section>
     
-    </div>
+    </article>
   )
 }
 

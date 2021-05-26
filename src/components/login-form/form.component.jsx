@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { auth } from '../../lib/firebase'
 import { useHistory } from 'react-router-dom'
 import routes from '../../constants/routes'
+import SubmitButton from '../submit-btn/submit-btn.component'
 
 const Form = ({ setError }) => {
   const history = useHistory()
@@ -11,7 +12,7 @@ const Form = ({ setError }) => {
   })
   const [showPassword, setShowPassword] = useState(false)
   
-  const isInvalid = credentials.email.length > 0 && credentials.password.length > 4;
+  const isValid = credentials.email.length > 0 && credentials.password.length > 4;
 
   const onCredentialsChange = ({ target }) => {
     setCredentials({ ...credentials, [target.name]: target.value })
@@ -45,7 +46,7 @@ const Form = ({ setError }) => {
   }
 
   return (
-    <div className='mt-6'>
+    <section className='mt-6'>
       <form
         method='post'
         className='flex flex-col justify-center align-middle'
@@ -63,7 +64,7 @@ const Form = ({ setError }) => {
 
         <div className="flex flex-row items-center relative	">
           <input
-            type={!showPassword && "password"}
+            type={!showPassword ? "password" : undefined}
             className='input-login'
             name='password'
             id="password"
@@ -71,28 +72,24 @@ const Form = ({ setError }) => {
             placeholder='Enter your password...'
             onChange={onCredentialsChange} />
 
-          <div className={`absolute right-0 pr-2 ${!credentials.password.length > 0 && 'hidden'}`}>
+          <div className={`absolute right-0 pr-1 pl-1 mr-1 h-9 flex items-center bg-gray-background ${!credentials.password.length > 0 && 'hidden'}`}>
             <button
               type='button'
               onClick={() => setShowPassword(true)}
-              className={`capitalize text-xs font-semibold focus:outline-none border-none ${showPassword && 'hidden'} `}>
+              className={`capitalize text-xs font-semibold btn-reset ${showPassword && 'hidden'} `}>
               show</button>
 
             <button
               type='button'
-              className={`capitalize text-xs font-semibold focus:outline-none border-none ${!showPassword && 'hidden'}`}
+              className={`capitalize text-xs font-semibold btn-reset ${!showPassword && 'hidden'}`}
               onClick={() => setShowPassword(false)}>
               hide</button>
           </div>
         </div>
 
-        <button
-          type="submit"
-          disabled={!isInvalid && true}
-          className='my-3 w-65 bg-blue-light text-white px-2 py-5px rounded font-bold focus:outline-none border-none disabled:opacity-60 '>
-          Log in</button>
+        <SubmitButton isValid={isValid}>Log in</SubmitButton>
       </form>
-    </div>
+    </section>
   )
 }
 
