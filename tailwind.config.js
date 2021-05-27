@@ -37,7 +37,9 @@ module.exports = {
       },
       red: {
         primary: '#ed4956'
-      }
+      },
+      failure: '#F32013',
+      success: '#4BB543'
     },
     screens: {
       'sm': { 'max': '500px' },

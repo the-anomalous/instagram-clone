@@ -1,25 +1,35 @@
 import React, {useState} from 'react'
-import SubmitButton from '../components/submit-btn/submit-btn.component'
 import { ReactComponent as Lock } from '../assets/icons/lock.svg'
 import { useHistory } from 'react-router-dom'
-import routes from '../constants/routes'
 import { auth } from '../lib/firebase'
+
+import routes from '../constants/routes'
+import Modal from '../components/modal/modal.component'
+import SubmitButton from '../components/submit-btn/submit-btn.component'
 
 const PasswordReset = () => {
   const history = useHistory()
   const [email, setEmail] = useState('')
-  
-  const onSubmit = async event => {
-    event.preventDefault();
-    const actionCodeSettings = {
-      url: `https://instagram-clone-4614b.firebaseapp.com/__/auth/action/?email=nshinchan4477@gmail.com@instagram-clone-4614b.firebaseapp.com`
-    }
-    try {
-      await auth.sendPasswordResetEmail(email, actionCodeSettings)
-    } catch (error) {
-      console.log(error);
-    }
+  const [isOpen, setIsOpen] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  const resetPassword = () => {
+    auth.sendPasswordResetEmail(email)
+      .then(() => {
+        setIsOpen(true)
+        setSuccess(true)
+      })
+      .catch((error) => {
+        setIsOpen(true)
+        setSuccess(false)
+      })
   }
+
+  const onSubmit = event => {
+    event.preventDefault();
+    resetPassword()  
+  }
+
 
   const isValid = email.length !== 0
 
@@ -44,6 +54,7 @@ const PasswordReset = () => {
             id='email'
             placeholder='Enter your email...'
             name='email'
+            value={email}
             onChange={({target}) => setEmail(target.value)}
           />
 
@@ -69,6 +80,15 @@ const PasswordReset = () => {
           >Back to Login Page</button>
         </aside>
       </section>
+
+      <Modal
+        isOpen={isOpen}
+        close={() => setIsOpen(false)}
+        success={success}
+        resend={resetPassword}
+        setEmail={setEmail}
+      >{success ? 'A Password reset link was sent to your email' : 'Cannot find the user, check your email once'}
+      </Modal>
     </article>
   )
 }
