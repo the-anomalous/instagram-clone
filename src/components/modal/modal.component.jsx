@@ -2,7 +2,7 @@ import React from 'react'
 import { ReactComponent as Success } from '../../assets/icons/success.svg'
 import { ReactComponent as Failure } from '../../assets/icons/danger.svg'
 
-const Modal = ({ children, isOpen, close, success, resend, setEmail }) => {
+const Modal = ({ children, isOpen, close, success, resend, setEmail, setError }) => {
   if (!isOpen) return null
   return (
     <>
@@ -24,6 +24,7 @@ const Modal = ({ children, isOpen, close, success, resend, setEmail }) => {
                 onClick={() => {
                   close()
                   setEmail('')
+                  setError(null)
                 }}
                 className=' font-semibold btn-reset '
               >Close</button>
@@ -32,6 +33,7 @@ const Modal = ({ children, isOpen, close, success, resend, setEmail }) => {
                 onClick={() => {
                   resend()
                   close()
+                  setError(null)
                 }}
                 className=' font-semibold btn-reset text-blue-light '
               >Resend</button>
@@ -41,6 +43,7 @@ const Modal = ({ children, isOpen, close, success, resend, setEmail }) => {
                 onClick={() => {
                   close()
                   setEmail('')
+                  setError(null)
                 }}
               className=' font-semibold btn-reset' 
             >

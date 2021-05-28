@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import LoginForm from '../components/login-form/login-form.component'
+import LoginFormContainer from '../components/form-containers/login-form-container.component'
 import profile from '../assets/iPhone-with-profile.png'
 
 const LoginPage = () => {
@@ -15,7 +15,7 @@ const LoginPage = () => {
           <img src={profile} alt="Instagram Profile on iPhone" />
         </figure>
 
-        <LoginForm/>
+        <LoginFormContainer />
       </div>
     </section>
   )

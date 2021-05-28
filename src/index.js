@@ -7,7 +7,9 @@ import './styles/app.css'
 import { BrowserRouter } from 'react-router-dom'
 
 import FirebaseContext from './contexts/firebase.context'
-import { firebase, FieldValue } from './lib/firebase'
+import firebase ,{
+  FieldValue
+} from './lib/firebase'
 
 ReactDOM.render(
   <FirebaseContext.Provider value={{ firebase, FieldValue }}>

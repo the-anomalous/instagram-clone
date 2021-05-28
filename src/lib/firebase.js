@@ -13,24 +13,12 @@ const config = {
   measurementId: "G-339SNCQT8W"
 };
 
-export const firebase = Firebase.initializeApp(config);
+const firebase = Firebase.initializeApp(config);
 Firebase.analytics();
 
 export const auth = Firebase.auth()
 export const firestore = Firebase.firestore()
 export const { FieldValue } = firestore 
 
-const facebookProvider = new Firebase.auth.FacebookAuthProvider();
-Firebase.auth().useDeviceLanguage();
-facebookProvider.setCustomParameters({
-  display: 'popup',
-  prompt: 'select_account'
-})
-
-export const signInWithFacebook = async () => {
-  try {
-    await auth.signInWithPopup(facebookProvider)
-  } catch ({message}) {
-    console.log(message);
-  }
-} 
+ 
+export default firebase

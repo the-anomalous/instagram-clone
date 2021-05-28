@@ -1,37 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { ReactComponent as Lock } from '../assets/icons/lock.svg'
 import { useHistory } from 'react-router-dom'
-import { auth } from '../lib/firebase'
-
 import routes from '../constants/routes'
-import Modal from '../components/modal/modal.component'
-import SubmitButton from '../components/submit-btn/submit-btn.component'
+import ResetPasswordForm from '../components/forms/reset-password-form.component'
 
 const PasswordReset = () => {
   const history = useHistory()
-  const [email, setEmail] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
-  const [success, setSuccess] = useState(false)
-
-  const resetPassword = () => {
-    auth.sendPasswordResetEmail(email)
-      .then(() => {
-        setIsOpen(true)
-        setSuccess(true)
-      })
-      .catch((error) => {
-        setIsOpen(true)
-        setSuccess(false)
-      })
-  }
-
-  const onSubmit = event => {
-    event.preventDefault();
-    resetPassword()  
-  }
-
-
-  const isValid = email.length !== 0
 
   return (
     <article className='flex items-center justify-center h-screen bg-gray-background' >
@@ -47,32 +21,18 @@ const PasswordReset = () => {
           Enter your email and we'll send you a link to get back into your account.
         </div>
 
-        <form method="post" onSubmit={onSubmit}>
-          <input
-            type="email"
-            className='input-login'
-            id='email'
-            placeholder='Enter your email...'
-            name='email'
-            value={email}
-            onChange={({target}) => setEmail(target.value)}
-          />
-
-          <SubmitButton isValid={isValid}>Send Login Link</SubmitButton>
-
-          <div className='flex flex-row justify-center items-center my-2'>
-            <hr className='border-gray-primary w-24' />
-            <span className=' inline-block mx-6 text-gray-base font-semibold'>OR</span>
-            <hr className='border-gray-primary w-24' />
-          </div>
-
-        </form>
+        <ResetPasswordForm/>
+        <div className='flex flex-row justify-center items-center my-2'>
+          <hr className='border-gray-primary w-24' />
+          <span className=' inline-block mx-6 text-gray-base font-semibold'>OR</span>
+          <hr className='border-gray-primary w-24' />
+        </div>
 
         <button
           className='outline-none font-semibold text-sm my-3 btn-reset text-black-light'
           onClick={() => history.push(routes.SIGN_UP)}
         >Create New Account</button>
-        
+
         <aside className='rounded-sm border border-gray-primary w-full bg-gray-background mt-16'>
           <button
             className='outline-none font-semibold text-sm my-3 btn-reset text-black-light'
@@ -81,14 +41,6 @@ const PasswordReset = () => {
         </aside>
       </section>
 
-      <Modal
-        isOpen={isOpen}
-        close={() => setIsOpen(false)}
-        success={success}
-        resend={resetPassword}
-        setEmail={setEmail}
-      >{success ? 'A Password reset link was sent to your email' : 'Cannot find the user, check your email once'}
-      </Modal>
     </article>
   )
 }

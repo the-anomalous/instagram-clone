@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import logo from '../../assets/logo.png'
 
 import { ReactComponent as FacebookLogo } from '../../assets/icons/facebook.svg';
 import { Link } from 'react-router-dom'
-import { signInWithFacebook } from '../../lib/firebase'
+import { signInWithFacebook } from '../../services/firebase.auth.services'
 import { useHistory } from 'react-router-dom'
 
-import Form from './form.component'
+import LoginForm from '../forms/login-form.component'
 import routes from '../../constants/routes'
 
-const LoginForm = () => {
-  const [error, setError] = useState('')
+const LoginFormContainer = () => {
   const history = useHistory()
-
-  const handleFacebookSignIn = async () => await signInWithFacebook();
-
-  const handleForgotPassword = async () => history.push(routes.RESET_PASSWORD)
-  
 
   return (
     <article className='flex flex-col justify-center items-center sm:w-4/5 md:4/5 '>
@@ -27,9 +21,7 @@ const LoginForm = () => {
           <img src={logo} alt="instagram logo" />
         </figure>
         
-        {error && <p className='text-red-primary'>{error}</p> }
-        
-        <Form setError={setError} />
+        <LoginForm />
         
         <div className='flex flex-row justify-center items-center my-2'>
           <hr className='border-gray-primary w-24' />
@@ -39,7 +31,7 @@ const LoginForm = () => {
 
         <button
           className='outline-none my-3 btn-reset'
-          onClick={handleFacebookSignIn}
+          onClick={signInWithFacebook}
         >
           <div className='text-blue-medium flex flex-row font-semibold' >
             <FacebookLogo className='w-4 mx-2'/>
@@ -49,7 +41,7 @@ const LoginForm = () => {
         
         <button
           className='btn-reset my-2 text-blue-medium text-xs font-semibold'
-          onClick={handleForgotPassword}
+          onClick={() => history.push(routes.RESET_PASSWORD)}
         >
           Forgot password?</button>
       </section>
@@ -64,4 +56,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default LoginFormContainer
