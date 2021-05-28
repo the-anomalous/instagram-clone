@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from '../../assets/logo.png'
 
-import { ReactComponent as FacebookLogo } from '../../assets/icons/facebook.svg';
 import { Link } from 'react-router-dom'
-import { signInWithFacebook } from '../../services/firebase.auth.services'
 import { useHistory } from 'react-router-dom'
 
 import LoginForm from '../forms/login-form.component'
 import routes from '../../constants/routes'
+import FacebookLoginButton from '../buttons/fb-login-btn.component'
+import Divider from '../divider/divide.component'
 
 const LoginFormContainer = () => {
   const history = useHistory()
@@ -22,23 +22,8 @@ const LoginFormContainer = () => {
         </figure>
         
         <LoginForm />
-        
-        <div className='flex flex-row justify-center items-center my-2'>
-          <hr className='border-gray-primary w-24' />
-          <span className=' inline-block mx-6 text-gray-base font-semibold'>OR</span>
-          <hr className='border-gray-primary w-24'/>
-        </div>
-
-        <button
-          className='outline-none my-3 btn-reset'
-          onClick={signInWithFacebook}
-        >
-          <div className='text-blue-medium flex flex-row font-semibold' >
-            <FacebookLogo className='w-4 mx-2'/>
-            Log in with Facebook
-          </div>
-        </button>
-        
+        <Divider/>
+        <FacebookLoginButton className='text-blue-medium'/>
         <button
           className='btn-reset my-2 text-blue-medium text-xs font-semibold'
           onClick={() => history.push(routes.RESET_PASSWORD)}

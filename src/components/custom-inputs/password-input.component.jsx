@@ -11,7 +11,7 @@ const PasswordInput = ({ passwordValue, setPassword }) => {
         name='password'
         id="password"
         value={passwordValue}
-        placeholder='Enter your password...'
+        placeholder='Password'
         onChange={({ target }) => setPassword(target.value)} />
 
       <div className={`absolute right-0 pr-1 pl-1 mr-1 h-9 flex items-center bg-gray-background ${!passwordValue.length > 0 && 'hidden'}`}>

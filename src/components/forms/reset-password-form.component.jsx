@@ -1,5 +1,5 @@
 import React, { useState }  from 'react'
-import SubmitButton from '../submit-btn/submit-btn.component'
+import SubmitButton from '../buttons/submit-btn.component'
 import Modal from '../modal/modal.component'
 import { resetPassword } from '../../services/firebase.auth.services'
 import EmailInput from '../custom-inputs/email-input.component'

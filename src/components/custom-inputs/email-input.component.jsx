@@ -6,7 +6,7 @@ const EmailInput = ({emailValue, setEmail}) => {
       <input
         type="email"
         className='input-login'
-        placeholder='Enter your email...'
+        placeholder='Email'
         name='email'
         value={emailValue}
         onChange={({target}) => setEmail(target.value)} />

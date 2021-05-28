@@ -1,25 +1,19 @@
 import React, { useState } from 'react'
-import { signInWithEmail } from '../../services/firebase.auth.services'
-import { useHistory } from 'react-router-dom'
-
 import SubmitButton from '../buttons/submit-btn.component'
+
 import EmailInput from '../custom-inputs/email-input.component'
 import PasswordInput from '../custom-inputs/password-input.component'
+import FullNameInput from '../custom-inputs/fullName-component'
+import UsernameInput from '../custom-inputs/username-input.component'
 
-const LoginForm = () => {
+const SignUpForm = () => {
   const [error, setError] = useState(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const history = useHistory()
+  const [fullName, setFullName] = useState('')
+  const [username, setUsername] = useState('')
 
-  const isValid = email.length > 0 && password.length > 4;
-
-  const handleSubmit = async event => {
-    event.preventDefault();
-    setEmail('') 
-    setPassword('')
-    await signInWithEmail(email, password, setError, history)
-  }
+  const isValid = email.length > 0 && username.length > 0 && fullName.length > 0 && password.length > 4;
 
   return (
     <>
@@ -27,22 +21,29 @@ const LoginForm = () => {
       <section className='mt-6'>
         <form
           method='post'
-          className='flex flex-col justify-center align-middle'
-          onSubmit={handleSubmit}
+          className='flex flex-col justify-center align-middle text-sm '
         >
           <EmailInput
             emailValue={email}
             setEmail={setEmail}
           />
+          <FullNameInput
+            fullNameValue={fullName}
+            setFullName={setFullName}
+          />
+          <UsernameInput
+            usernameValue={username}
+            setUsername={setUsername}
+          />
           <PasswordInput
             passwordValue={password}
             setPassword={setPassword}
           />
-          <SubmitButton isValid={isValid}>Log in</SubmitButton>
+          <SubmitButton isValid={isValid}>Sign Up</SubmitButton>
         </form>
       </section>
     </>
   )
 }
 
-export default LoginForm
+export default SignUpForm
