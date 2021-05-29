@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { signInWithEmail } from '../../services/firebase.auth.services'
 import { useHistory } from 'react-router-dom'
+import routes from '../../constants/routes'
 
 import SubmitButton from '../buttons/submit-btn.component'
 import EmailInput from '../custom-inputs/email-input.component'
@@ -14,11 +15,20 @@ const LoginForm = () => {
 
   const isValid = email.length > 0 && password.length > 4;
 
+  const reset = () => {
+    setEmail('')
+    setPassword('')
+  }
+
   const handleSubmit = async event => {
     event.preventDefault();
-    setEmail('') 
-    setPassword('')
-    await signInWithEmail(email, password, setError, history)
+    const status = await signInWithEmail(email, password, setError)
+    if (status.success) {
+      reset()
+      history.push(routes.DASHBOARD)
+    } else {
+      status.error === 'wrong-password' ? setPassword('') : reset()
+    }
   }
 
   return (

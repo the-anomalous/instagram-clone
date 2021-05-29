@@ -1,6 +1,5 @@
 import Firebase from 'firebase/app';
 import { auth } from '../lib/firebase'
-import routes from '../constants/routes'
 
 const facebookProvider = new Firebase.auth.FacebookAuthProvider();
 Firebase.auth().useDeviceLanguage();
@@ -18,10 +17,12 @@ export const signInWithFacebook = async () => {
   }
 }
 
-export const signInWithEmail = async (email, password, setError, history) => {
+export const signInWithEmail = async (email, password, setError) => {
+  let success;
+  let error;
   try {
     await auth.signInWithEmailAndPassword(email, password)
-    history.push(routes.DASHBOARD)
+    success = true
   } catch ({ code }) {
     switch (code) {
       case "auth/user-not-found":
@@ -29,6 +30,7 @@ export const signInWithEmail = async (email, password, setError, history) => {
         break;
       case "auth/wrong-password":
         setError("Password does not match")
+        error = 'wrong-password'
         break;
       default:
         setError('Sorry, something went wrong. Try again after some time')
@@ -36,6 +38,7 @@ export const signInWithEmail = async (email, password, setError, history) => {
     }
     setTimeout(() => setError(null), 2000);
   }
+  return {success, error}
 }
 
 export const resetPassword = (email, setIsOpen, setError) => {
