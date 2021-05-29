@@ -1,13 +1,13 @@
 import React from 'react';
-import logo from '../../assets/logo.png'
+import logo from '../assets/logo.png'
 
 import { Link } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
 
-import LoginForm from '../forms/login-form.component'
-import routes from '../../constants/routes'
-import FacebookLoginButton from '../buttons/fb-login-btn.component'
-import Divider from '../divider/divide.component'
+import LoginForm from './forms/login-form.component'
+import routes from '../constants/routes'
+import FacebookLoginButton from './buttons/fb-login-btn.component'
+import Divider from './divider.component'
 
 const LoginFormContainer = () => {
   const history = useHistory()

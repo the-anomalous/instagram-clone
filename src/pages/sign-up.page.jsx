@@ -5,14 +5,14 @@ import logo from '../assets/logo.png'
 import FacebookLoginButton from '../components/buttons/fb-login-btn.component'
 import SignUpForm from '../components/forms/sign-up-form.component'
 import routes from '../constants/routes'
-import Divider from '../components/divider/divide.component'
+import Divider from '../components/divider.component'
 
 const SignUpPage = () => {
   return (
     <article className='flex flex-col items-center justify-center h-screen bg-gray-background' >
       <section className=' bg-white rounded-sm border border-gray-primary
       max-w-sm text-center flex flex-col items-center justify-center w-81 p-4'>
-        <figure className='my-4 mx-16 w-44'>
+        <figure className='my-1 mx-16 w-44'>
           <img src={logo} alt="instagram logo" />
         </figure>
         

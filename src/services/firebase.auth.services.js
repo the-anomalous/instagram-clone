@@ -55,3 +55,22 @@ export const resetPassword = (email, setIsOpen, setError) => {
       }
     })
 }
+
+export const signUpWithEmail = async (email, password, setError) => {
+  let success = false;
+  try {
+    await auth.createUserWithEmailAndPassword(email, password)
+    success = true
+  } catch ({ code }) {
+    switch (code) {
+      case "auth/email-already-in-use":
+        setError('Email already in use')
+        break;
+      default:
+        setError('Something went wrong, try again later')
+        break;
+    }
+    setTimeout(() => setError(''), 2000);
+  }
+  return success
+}  

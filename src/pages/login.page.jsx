@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import LoginFormContainer from '../components/form-containers/login-form-container.component'
+import LoginFormContainer from '../components/login-form-container.component'
 import profile from '../assets/iPhone-with-profile.png'
 
 const LoginPage = () => {
