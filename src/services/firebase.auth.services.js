@@ -11,7 +11,6 @@ facebookProvider.setCustomParameters({
 export const signInWithFacebook = async () => {
   try {
     await auth.signInWithPopup(facebookProvider)
-    console.log('success');
   } catch ({ message }) {
     console.log(message);
   }
@@ -59,10 +58,11 @@ export const resetPassword = (email, setIsOpen, setError) => {
     })
 }
 
-export const signUpWithEmail = async (email, password, setError) => {
+export const signUpWithEmail = async (email, password, fullName, setError) => {
   let success = false;
   try {
-    await auth.createUserWithEmailAndPassword(email, password)
+    const { user } = await auth.createUserWithEmailAndPassword(email, password);
+    user.updateProfile({displayName:fullName})
     success = true
   } catch ({ code }) {
     switch (code) {

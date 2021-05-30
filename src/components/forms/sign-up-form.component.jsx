@@ -19,7 +19,7 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('')
   const history = useHistory()
 
-  const isValid = username.length > 0 //&& email.length > 0 && fullName.length > 0 && password.length > 4;
+  const isValid = username.length > 0 && email.length > 0 && fullName.length > 0 && password.length > 4;
   
   const resetForm = () => {
     setUsername('')
@@ -30,9 +30,10 @@ const SignUpForm = () => {
 
   const onSubmit = async event => {
     event.preventDefault()
+    console.log('fired');
     const usernameExists = await doesUsernameExists(username, setError)
     if (!usernameExists) {
-      const success = await signUpWithEmail(email, password, setError)
+      const success = await signUpWithEmail(email, password, fullName, setError)
       resetForm()
       if (success) {
         history.push(routes.DASHBOARD)
