@@ -9,11 +9,14 @@ facebookProvider.setCustomParameters({
 })
 
 export const signInWithFacebook = async () => {
+  let success;
   try {
     await auth.signInWithPopup(facebookProvider)
+    success = true
   } catch ({ message }) {
     console.log(message);
   }
+  return success
 }
 
 export const signInWithEmail = async (email, password, setError) => {
@@ -76,4 +79,12 @@ export const signUpWithEmail = async (email, password, fullName, setError) => {
     setTimeout(() => setError(''), 2000);
   }
   return success
-}  
+}
+
+export const signOut = async () => {
+  try {
+    await auth.signOut()
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -9,6 +9,7 @@ const LoginPage = lazy(() => import('./pages/login.page'))
 const SignUpPage = lazy(() => import('./pages/sign-up.page'))
 const PasswordReset = lazy(() => import('./pages/password-reset.page'))
 const NotFound = lazy(() => import('./pages/not-found.page'))
+const Dashboard = lazy(() => import('./pages/dashboard.page'))
 
 const App = () => {
   const user = useAuthListener()
@@ -22,6 +23,7 @@ const App = () => {
             <Route exact path={routes.SIGN_UP} component={SignUpPage} />
             <Route exact path={routes.RESET_PASSWORD} component={PasswordReset} />
             <Route exact path={routes.NOT_FOUND} component={NotFound} />
+            <Route exact path={routes.DASHBOARD} component={Dashboard} />
           </Switch>
         </Suspense>
       </UserContext.Provider>
