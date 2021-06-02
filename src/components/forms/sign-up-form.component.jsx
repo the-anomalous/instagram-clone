@@ -30,10 +30,9 @@ const SignUpForm = () => {
 
   const onSubmit = async event => {
     event.preventDefault()
-    console.log('fired');
     const usernameExists = await doesUsernameExists(username, setError)
     if (!usernameExists) {
-      const success = await signUpWithEmail(email, password, fullName, setError)
+      const success = await signUpWithEmail(email, password, fullName, username, setError)
       resetForm()
       if (success) {
         history.push(routes.DASHBOARD)

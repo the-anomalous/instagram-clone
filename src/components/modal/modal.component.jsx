@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import { ReactComponent as Success } from '../../assets/icons/success.svg'
 import { ReactComponent as Failure } from '../../assets/icons/danger.svg'
 
@@ -56,4 +57,4 @@ const Modal = ({ children, isOpen, close, success, resend, setEmail, setError })
   )
 }
 
-export default Modal
+export default ReactDOM.createPortal(Modal, document.getElementById('modal'))

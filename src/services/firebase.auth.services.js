@@ -1,5 +1,6 @@
 import Firebase from 'firebase/app';
 import { auth } from '../lib/firebase'
+import {createUserDocument} from './firestore.services'
 
 const facebookProvider = new Firebase.auth.FacebookAuthProvider();
 Firebase.auth().useDeviceLanguage();
@@ -11,7 +12,8 @@ facebookProvider.setCustomParameters({
 export const signInWithFacebook = async () => {
   let success;
   try {
-    await auth.signInWithPopup(facebookProvider)
+    const { user } = await auth.signInWithPopup(facebookProvider)
+    await createUserDocument(user, `user${Math.floor(Math.random() * 10 ** 10)}`)
     success = true
   } catch ({ message }) {
     console.log(message);
@@ -61,11 +63,12 @@ export const resetPassword = (email, setIsOpen, setError) => {
     })
 }
 
-export const signUpWithEmail = async (email, password, fullName, setError) => {
+export const signUpWithEmail = async (email, password, fullName, username, setError) => {
   let success = false;
   try {
     const { user } = await auth.createUserWithEmailAndPassword(email, password);
-    user.updateProfile({displayName:fullName})
+    await user.updateProfile({ displayName: fullName })
+    await createUserDocument(user, username)
     success = true
   } catch ({ code }) {
     switch (code) {
