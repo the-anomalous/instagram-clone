@@ -9,7 +9,7 @@ const CurrentUser = ({userData, userAuth}) => {
         userData ? (
           <section className='flex flex-row items-center mb-1' >
             <figure>
-              <img src={userAuth?.photoURL ? userAuth.photoURL : Profile} alt="user avatar" className='rounded-full w-16 h-16 ' />
+              <img src={userAuth?.photoURL || Profile} alt="user avatar" className='rounded-full w-16 h-16 ' />
             </figure>
 
             <div className='flex flex-col justify-between mx-3 text-sm text-left ' >

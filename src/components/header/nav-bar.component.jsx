@@ -34,7 +34,7 @@ const NavBar = () => {
             type='button'
             className='btn-reset'>
             <figure className='rounded-full w-7'>
-              <img src={user.photoURL ? user.photoURL : Profile} alt="profile avatar" className='rounded-full' />
+              <img src={user.photoURL || Profile} alt="profile avatar" className='rounded-full' />
             </figure>
           </button>
         </nav>

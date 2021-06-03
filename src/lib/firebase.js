@@ -18,7 +18,7 @@ Firebase.analytics();
 
 export const auth = Firebase.auth()
 export const firestore = Firebase.firestore()
-export const { FieldValue } = firestore 
+export const { FieldValue } = Firebase.firestore
 
  
 export default firebase

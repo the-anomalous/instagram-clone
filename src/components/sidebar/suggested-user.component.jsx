@@ -29,7 +29,7 @@ const SuggestedUser = () => {
             suggestedUsers.map(user => <User key={user.uid} user={user} />
             )
           ) : (
-            range(5).map(() => <Skeleton count={2} />)
+            range(5).map(num => <Skeleton count={2} key={num} />)
           )
         }
       </div>
