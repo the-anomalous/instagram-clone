@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react'
+ import React, { useContext, useEffect, useState } from 'react'
 import UserAuthContext from '../../contexts/user-auth.context'
 import { getSuggestedUsers } from '../../services/firestore.services'
 import User from './user.component'
 import Skeleton from 'react-loading-skeleton';
-import { range } from 'lodash';
 
 const SuggestedUser = () => {
   const userAuth = useContext(UserAuthContext)
@@ -24,13 +23,13 @@ const SuggestedUser = () => {
       </div>
 
       <div className='ml-1 mt-3'>
-        {
+        { 
           suggestedUsers ? (
             suggestedUsers.map(user => <User key={user.uid} user={user} />
             )
           ) : (
-            range(5).map(num => <Skeleton count={2} key={num} />)
-          )
+          [...Array(5)].map((_, index) => <Skeleton count={2} key={index} />)
+          ) 
         }
       </div>
     </section>

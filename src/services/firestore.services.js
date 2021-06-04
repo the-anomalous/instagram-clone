@@ -82,7 +82,7 @@ export const getPhotos = async (following, uid) => {
       .collection('photos')
       .where('userId', 'in', following)
       .get()
-    const photosArray = followedUsersPhotos.docs.map(photo => ({ ...photo.data() }))
+    const photosArray = followedUsersPhotos.docs.map(photo => ({ ...photo.data(), docId:photo.id }))
     
     const userPhotoData = await Promise.all(
       photosArray.map(async photo => {
