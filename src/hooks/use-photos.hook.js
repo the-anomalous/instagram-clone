@@ -4,6 +4,7 @@ import { getUserById, getPhotos } from '../services/firestore.services'
 
 const usePhotos = () => {
   const [photos, setPhotos] = useState(null)
+  const [loading, setLoading] = useState(true)
   const userAuth = useContext(UserAuthContext)
 
   useEffect(() => {
@@ -12,11 +13,12 @@ const usePhotos = () => {
       const {photos} = await getPhotos(following, userAuth.uid)
       photos.sort((a, b) => b.dateCreated - a.dateCreated)
       setPhotos(photos)
+      setLoading(false)
     }
     getTimelinePhotos()
   }, [userAuth?.uid])
 
-  return {photos}
+  return {photos, loading}
 }
 
 export default usePhotos

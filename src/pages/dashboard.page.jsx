@@ -9,7 +9,7 @@ const Dashboard = () => {
   const user = useContext(UserAuthContext)
 
   return (
-    <div className='bg-gray-background h-screen' >
+    <div className='bg-gray-background' >
       <Header />
       {
         user ? (

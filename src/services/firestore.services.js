@@ -102,3 +102,15 @@ export const getPhotos = async (following, uid) => {
     console.log(message);
   }
 }
+
+export const updateLikes = async (userId, liked, docId) => {
+  const docRef = firestore.doc(`photos/${docId}`)
+
+  try {
+    docRef.update({
+      likes: liked ? FieldValue.arrayRemove(userId) : FieldValue.arrayUnion(userId)
+    })
+  } catch ({message}) {
+    console.log(message);
+  }
+}
