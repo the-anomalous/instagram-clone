@@ -10,10 +10,15 @@ const usePhotos = () => {
   useEffect(() => {
     const getTimelinePhotos = async () => {
       const { following } = await getUserById(userAuth.uid);
-      const {photos} = await getPhotos(following, userAuth.uid)
-      photos.sort((a, b) => b.dateCreated - a.dateCreated)
-      setPhotos(photos)
-      setLoading(false)
+      if (following.length > 0) {
+        const {photos} = await getPhotos(following, userAuth.uid)
+        photos.sort((a, b) => b.dateCreated - a.dateCreated)
+        setPhotos(photos)
+        setLoading(false)
+      } else {
+        setPhotos([])
+        setLoading(false)
+      }
     }
     getTimelinePhotos()
   }, [userAuth?.uid])

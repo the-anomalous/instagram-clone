@@ -69,7 +69,7 @@ const SignUpForm = () => {
             passwordValue={password}
             setPassword={setPassword}
           />
-          <SubmitButton isValid={isValid}>Sign Up</SubmitButton>
+          <SubmitButton className='my-3 w-65 bg-blue-light text-white px-2 py-5px rounded btn-reset disabled:opacity-60' isValid={isValid}>Sign Up</SubmitButton>
         </form>
       </section>
     </>

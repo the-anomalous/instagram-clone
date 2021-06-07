@@ -23,7 +23,7 @@ const ResetPasswordForm = () => {
           emailValue={email}
           setEmail={setEmail}
         />
-        <SubmitButton isValid={isValid}>Send Login Link</SubmitButton>
+        <SubmitButton className='my-3 w-65 bg-blue-light text-white px-2 py-5px rounded btn-reset disabled:opacity-60' isValid={isValid}>Send Login Link</SubmitButton>
       </form>
 
       <Modal

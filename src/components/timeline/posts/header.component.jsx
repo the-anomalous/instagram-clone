@@ -6,11 +6,11 @@ const Header = ({ username, profilePhoto }) => (
   <div className='p-3 flex-row flex border-b border-gray-primary items-center'>
     <Link to={`/profile/${username}`}>
       <figure>
-        <img src={profilePhoto || Profile} alt={`${username} profile avatar`} className='w-8 h-8 rounded-full mr-3 ml-1' />
+        <img src={profilePhoto || Profile} alt={`${username} profile avatar`} className='w-8 h-8 rounded-full mr-2 ml-1' />
       </figure>
     </Link>
     <Link to={`/profile/${username}`}>
-      <span className='inline-block pb-1' >{username}</span>
+      <span className='inline-block font-semibold' >{username}</span>
     </Link>
   </div>
 )

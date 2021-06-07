@@ -4,8 +4,8 @@ import NavBar from './nav-bar.component'
 
 const Header = () => {
   return (
-    <article className='bg-white w-full h-14 mb-6 border-b flex justify-center border-gray-primary' >
-      <section className='container max-w-5xl h-full flex justify-between z-50 '>
+    <article className='bg-white w-full h-14 mb-6 border-b flex justify-center border-gray-primary fixed z-10' >
+      <section className='container max-w-5xl h-full flex justify-between z-10 '>
         <div className='h-full flex items-center justify-center my-1 mx-2'>
           <h1>
             <figure  >

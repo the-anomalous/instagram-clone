@@ -5,7 +5,7 @@ import { ReactComponent as Failure } from '../../assets/icons/danger.svg'
 
 const Modal = ({ children, isOpen, close, success, resend, setEmail, setError }) => {
   if (!isOpen) return null
-  return (
+  return ReactDOM.createPortal(
     <>
       <div className='fixed top-0 bottom-0 left-0 right-0 bg-black-faded z-10 p-1 ' />
       <div style={{ transform: 'translate(-50%,-50%)' }} className='rounded-md bg-white w-72 h-40 absolute top-2/4 left-2/4 z-50 flex flex-col justify-items-center justify-around items-center  '>
@@ -53,8 +53,9 @@ const Modal = ({ children, isOpen, close, success, resend, setEmail, setError })
           )
         }
       </div>
-    </>
+    </>,
+    document.getElementById('modal')
   )
 }
 
-export default ReactDOM.createPortal(Modal, document.getElementById('modal'))
+export default Modal

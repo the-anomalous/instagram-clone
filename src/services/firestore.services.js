@@ -82,22 +82,27 @@ export const getPhotos = async (following, uid) => {
       .collection('photos')
       .where('userId', 'in', following)
       .get()
-    const photosArray = followedUsersPhotos.docs.map(photo => ({ ...photo.data(), docId:photo.id }))
     
-    const userPhotoData = await Promise.all(
-      photosArray.map(async photo => {
-        let userLikedPhoto = false;
-        if (photo.likes.includes(uid)) {
-          userLikedPhoto = true
-        }
-        
-        const snapshot = await firestore.doc(`users/${photo.userId}`).get()
-        const { username } = snapshot.data()
-        
-        return {...photo, username, userLikedPhoto}
-      })
-      )
-      return {photos: userPhotoData}
+    if (!followedUsersPhotos.empty) {
+      const photosArray = followedUsersPhotos.docs.map(photo => ({ ...photo.data(), docId:photo.id }))
+      
+      const userPhotoData = await Promise.all(
+        photosArray.map(async photo => {
+          let userLikedPhoto = false;
+          if (photo.likes.includes(uid)) {
+            userLikedPhoto = true
+          }
+          
+          const snapshot = await firestore.doc(`users/${photo.userId}`).get()
+          const { username } = snapshot.data()
+          
+          return {...photo, username, userLikedPhoto}
+        })
+        )
+        return {photos: userPhotoData}
+    }
+
+    return {photos: []}
   } catch ({message}) {
     console.log(message);
   }
@@ -113,4 +118,21 @@ export const updateLikes = async (userId, liked, docId) => {
   } catch ({message}) {
     console.log(message);
   }
+}
+
+export const addComments = async (comment, displayName, docId) => {
+  const docRef = firestore.doc(`photos/${docId}`)
+  
+  try {
+    docRef.update({
+      comments: FieldValue.arrayUnion({comment, displayName})
+    })
+  } catch ({message}) {
+    console.log(message);
+  }
+}
+
+export const getProfilePhotoById = async id => {
+  const user = await getUserById(id)
+  return user.profilePhoto
 }

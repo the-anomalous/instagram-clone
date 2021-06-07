@@ -28,7 +28,9 @@ const SuggestedUser = () => {
             suggestedUsers.map(user => <User key={user.uid} user={user} />
             )
           ) : (
-          [...Array(5)].map((_, index) => <Skeleton count={2} key={index} />)
+              [...Array(5)].map((_, index) => (
+                <Skeleton count={1} key={index} className='w-8 h-8' />
+              ))
           ) 
         }
       </div>
