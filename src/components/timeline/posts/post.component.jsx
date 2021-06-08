@@ -1,7 +1,7 @@
 import React, {useContext, useRef} from 'react'
 import UserAuthContext from '../../../contexts/user-auth.context'
 import Actions from './actions.component'
-import Header from './header.component'
+import PostHeader from './post-header.component'
 import Image from './image.component'
 import Footer from './footer.component'
 import Comments from './comments.component'
@@ -14,7 +14,7 @@ const Post = ({ photo }) => {
   
   return (
     <div className='bg-white mb-10 rounded border border-gray-primary'>
-      <Header username={username} profilePhoto={profilePhoto} />
+      <PostHeader username={username} profilePhoto={profilePhoto} />
       <Image src={imageSrc} />
       <Actions userLikedPhoto={userLikedPhoto} inputRef={inputRef} likes={likes} userId={uid} docId={docId} />
       <Footer caption={caption} username={username} />

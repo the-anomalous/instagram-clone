@@ -3,6 +3,7 @@ import { ReactComponent as Cross } from '../../assets/icons/cross.svg'
 import Profile from '../../assets/profile.jpg'
 import { getProfilePhotoById } from '../../services/firestore.services'
 import AddComment from '../timeline/posts/add-comment.component'
+import { Link } from 'react-router-dom'
 
 const CommentsModal = ({ setClose, username, profilePhoto, caption, docId, comments }) => {
   return (
@@ -19,7 +20,9 @@ const CommentsModal = ({ setClose, username, profilePhoto, caption, docId, comme
             <img src={profilePhoto ?? Profile} alt={`${username} profile avatar`} className='rounded-full' width='34px' height='34px' />
           </figure>
           <div className='flex flex-col text-sm ml-2' >
-            <span className='font-semibold' >{username}</span>
+            <Link to={`/profile/${username}`}>
+              <span className='font-semibold' >{username}</span>
+            </Link>
             <span>{caption}</span>
           </div>
         </header>
@@ -33,7 +36,9 @@ const CommentsModal = ({ setClose, username, profilePhoto, caption, docId, comme
                     <img src={profilePhoto ?? Profile} alt={`${username} profile avatar`} className='rounded-full w-8 h-8 '/>
                   </figure>
                   <div className='mx-2 mt-1 w-4/5 ' >
-                    <span className='font-semibold mr-1 ' >{displayName}</span>
+                    <Link to={`/profile/${displayName}`} >
+                      <span className='font-semibold mr-1 ' >{displayName}</span>
+                    </Link>
                     <span>{comment}</span>
                   </div>
                 </li>
