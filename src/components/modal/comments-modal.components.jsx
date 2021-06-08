@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent as Cross } from '../../assets/icons/cross.svg'
 import Profile from '../../assets/profile.jpg'
-import { getProfilePhotoById } from '../../services/firestore.services'
+// import { getProfilePhotoById } from '../../services/firestore.services'
 import AddComment from '../timeline/posts/add-comment.component'
 import { Link } from 'react-router-dom'
 

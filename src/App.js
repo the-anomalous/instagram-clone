@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './lib/firebase'
 import isLoadingContext from './contexts/is-loading.context'
 import Loading from './components/loading.component'
+import ProtectedDashboardRoute from './helpers/protected-dashboard.route'
 
 const LoginPage = lazy(() => import('./pages/login.page'))
 const SignUpPage = lazy(() => import('./pages/sign-up.page'))
@@ -27,7 +28,9 @@ const App = () => {
               <Route exact path={routes.SIGN_UP} component={SignUpPage} />
               <Route exact path={routes.RESET_PASSWORD} component={PasswordReset} />
               <Route exact path={routes.NOT_FOUND} component={NotFound} />
-              <Route exact path={routes.DASHBOARD} component={Dashboard} />
+              <ProtectedDashboardRoute exact user={user} loading={loading} pathName={routes.DASHBOARD} >
+                <Dashboard/>
+              </ProtectedDashboardRoute>
             </Switch>
           </Suspense>
         </UserAuthContext.Provider>
