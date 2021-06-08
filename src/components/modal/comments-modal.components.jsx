@@ -4,26 +4,26 @@ import Profile from '../../assets/profile.jpg'
 // import { getProfilePhotoById } from '../../services/firestore.services'
 import AddComment from '../timeline/posts/add-comment.component'
 import { Link } from 'react-router-dom'
+import ReactDOM from 'react-dom';
 
 const CommentsModal = ({ setClose, username, profilePhoto, caption, docId, comments }) => {
-  return (
+  return ReactDOM.createPortal(
     <>
       <div className='fixed top-0 bottom-0 bg-black-faded left-0 right-0 z-30 ' />
-      <article className='absolute top-2/4 left-2/4 z-50 bg-white rounded border border-gray-primary' style={{ transform: 'translate(0,-50%)', height: '580px', width: '350px', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }} >
+      <article className='fixed top-2/4 left-2/4 z-50 bg-white rounded border border-gray-primary w-md h-md mobile-sm:w-sm mobile-sm:h-sm sm:h-sm md:h-sm ' style={{ transform: 'translate(-50%,-50%)'}} >
         <button
           onClick={setClose}
-          className='btn-reset absolute -top-7 -right-7 '
-        ><Cross /></button>
+          className='btn-reset absolute -top-7 -right-7 mobile-sm:top-1 mobile-sm:right-2 z-50'
+        ><Cross className='fill-white mobile-sm:fill-black w-6' /></button>
 
         <header className='p-4 border-b border-gray-primary flex flex-row flex-wrap fixed top-0 right-0 left-0 ' >
-          <figure className='w-9 h-10' >
+          <figure className='w-9 h-8 ' >
             <img src={profilePhoto ?? Profile} alt={`${username} profile avatar`} className='rounded-full' width='34px' height='34px' />
           </figure>
-          <div className='flex flex-col text-sm ml-2' >
+          <div className='flex flex-col text-sm ml-2 w-4/5  justify-center' >
             <Link to={`/profile/${username}`}>
               <span className='font-semibold' >{username}</span>
             </Link>
-            <span>{caption}</span>
           </div>
         </header>
 
@@ -50,7 +50,8 @@ const CommentsModal = ({ setClose, username, profilePhoto, caption, docId, comme
           <AddComment docId={docId} username={username} />
         </footer>
       </article>
-    </>
+    </>,
+  document.getElementById('modal')
   )
 }
 

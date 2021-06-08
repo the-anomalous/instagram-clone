@@ -4,7 +4,6 @@ import routes from '../constants/routes'
 import Loading from '../components/loading.component'
 
 const ProtectedDashboardRoute = ({ pathName, user, children, loading, ...rest }) => {
-  console.log(user);
   return (
   <Route
     {...rest}

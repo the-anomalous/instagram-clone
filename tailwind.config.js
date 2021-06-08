@@ -14,12 +14,21 @@ module.exports = {
         '5px' : '5px'
       },
       width: {
-        '81' : '21rem'
+        '81': '21rem',
+        'lg': '614px',
+        'md': '350px',
+        'sm': '300px'
+      },
+      height: {
+        'lg': '614px',
+        'md': '580px',
+        'sm': '500px'
       }
     },
     fill: (theme) => ({
       red: theme('colors.red.primary'),
-      white: theme('colors.white')
+      white: theme('colors.white'),
+      black: theme('colors.black.primary')
     }),
     colors: {
       white: '#ffffff',
@@ -29,7 +38,8 @@ module.exports = {
       },
       black: {
         light: '#262626',
-        faded: '#00000059'
+        faded: '#00000059',
+        primary: '#000'
       },
       gray: {
         base: '#616161',
@@ -43,8 +53,9 @@ module.exports = {
       success: '#4BB543'
     },
     screens: {
-      'sm': { 'max': '500px' },
-      'md': { 'min': '501px', 'max': '767px' },
+      'mobile-sm':{ 'max': '380px' }, 
+      'sm': { 'max': '500px'} ,
+      'md': { 'min': '501px', 'max': '800px' },
       'lg': {'min': '768px'}
     },
   },

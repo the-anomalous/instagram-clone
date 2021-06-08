@@ -9,7 +9,7 @@ const Sidebar = () => {
   const userAuth = useContext(UserAuthContext)
 
   return (
-    <section className='col-start-3 col-end-4 p-2 relative' >
+    <section className='col-start-3 col-end-4 p-2 relative sm:hidden md:hidden mobile-sm:hidden' >
       <div className='fixed' style={{width:'23.3%'}} >
         <CurrentUser userAuth={userAuth} userData={userData} />
         <SuggestedUser/>

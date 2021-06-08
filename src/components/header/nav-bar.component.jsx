@@ -39,7 +39,7 @@ const NavBar = () => {
           </button>
         </nav>
       ) : (
-        <nav className='flex flex-row items-center justify-around  w-36 md:mx-2 lg:mx-2 sm:text-sm sm:w-32 '>
+            <nav className='flex flex-row items-center justify-around  w-36 md:mx-2 lg:mx-2 sm:text-sm sm:w-32 mobile-sm:w-32 '>
           <button
             className='bg-blue-light text-white font-semibold rounded px-2 py-1 btn-reset hover:opacity-90 '
             onClick={() => history.push(routes.LOGIN_PAGE)}>

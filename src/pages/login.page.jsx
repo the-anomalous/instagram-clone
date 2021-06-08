@@ -11,7 +11,7 @@ const LoginPage = () => {
     <section className='w-screen bg-gray-background'>
       <div className='container flex justify-center content-center items-center align-middle max-w-screen-md h-screen mx-auto'>
         
-        <figure className="flex w-3/5 sm:hidden md:hidden">
+        <figure className="flex w-3/5 sm:hidden mobile-sm:hidden md:hidden">
           <img src={profile} alt="Instagram Profile on iPhone" />
         </figure>
 

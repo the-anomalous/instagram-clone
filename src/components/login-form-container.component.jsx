@@ -13,7 +13,7 @@ const LoginFormContainer = () => {
   const history = useHistory()
 
   return (
-    <article className='flex flex-col justify-center items-center sm:w-4/5 md:4/5 '>
+    <article className='flex flex-col justify-center items-center sm:w-4/5 mobile-sm:w-4/5 md:4/5 '>
       <h1 hidden>Instagram</h1>
 
       <section className='flex flex-col justify-center items-center rounded-sm bg-white border border-gray-primary p-4 text-sm '>

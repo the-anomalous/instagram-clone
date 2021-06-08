@@ -13,7 +13,7 @@ const Post = ({ photo }) => {
   const inputRef = useRef()
   
   return (
-    <div className='bg-white mb-10 rounded border border-gray-primary'>
+    <div className='bg-white mb-10 rounded border border-gray-primary sm:w-11/12 mobile-sm:w-full'>
       <PostHeader username={username} profilePhoto={profilePhoto} />
       <Image src={imageSrc} />
       <Actions userLikedPhoto={userLikedPhoto} inputRef={inputRef} likes={likes} userId={uid} docId={docId} />
