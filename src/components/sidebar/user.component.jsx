@@ -21,7 +21,7 @@ const User = ({user}) => {
     !followed && (
       <div className='flex flex-row w-full mb-4 mt-1 ' >
         <Link to={`/profile/${username}`}>
-          <figure style={{paddingTop:'2px'}} >
+          <figure className='pt-1' >
             <img src={profilePhoto || Profile} className='rounded-full' width='34px' height='34px' alt="user profile" />
           </figure>
         </Link>

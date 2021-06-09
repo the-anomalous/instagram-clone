@@ -8,7 +8,7 @@ const CurrentUser = ({userData, userAuth}) => {
     <>
       {
         userData ? (
-          <section className='flex flex-row items-center mb-1' >
+          <section className='flex flex-row items-center mb-1 sm:hidden md:hidden mobile-sm:hidden' >
             <Link to={`/profile/${userData.username}`}>
               <figure>
                 <img src={userAuth?.photoURL || Profile} alt="user avatar" className='rounded-full w-16 h-16 ' />
@@ -23,7 +23,7 @@ const CurrentUser = ({userData, userAuth}) => {
             </div>
           </section>
         ) : (
-          <Skeleton count={1} height={70} />
+          <Skeleton count={1} height={70} className='sm:hidden md:hidden mobile-sm:hidden' />
         )
       }
     </>

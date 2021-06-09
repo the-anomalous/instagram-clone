@@ -17,7 +17,8 @@ module.exports = {
         '81': '21rem',
         'lg': '614px',
         'md': '350px',
-        'sm': '300px'
+        'sm': '300px',
+        'sidebar': '23.3%'
       },
       height: {
         'lg': '614px',

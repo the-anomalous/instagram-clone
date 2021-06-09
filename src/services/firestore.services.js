@@ -136,3 +136,35 @@ export const getProfilePhotoById = async id => {
   const user = await getUserById(id)
   return user.profilePhoto
 }
+
+export const getUserByUsername = async username => {
+  try {
+    const snapshot = await firestore
+      .collection('users')
+      .where('username', '==', username)
+      .get()
+    
+    const userData = snapshot.docs.map(user => ({...user.data()}))
+    
+    return userData
+  } catch ({message}) {
+    console.log(message);
+  }
+}
+
+export const getPhotosById = async userId => {
+  try {
+    if (userId) {
+      const snapshot = await firestore
+        .collection('photos')
+        .where('userId', '==', userId)
+        .get()
+      
+      const photos = snapshot.docs.map(photo => ({ id:photo.id,  ...photo.data()}))
+      return photos
+    }
+    return null
+  } catch ({message}) {
+    console.log(message);
+  }
+}

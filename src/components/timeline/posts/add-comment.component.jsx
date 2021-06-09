@@ -21,9 +21,9 @@ const AddComment = ({ inputRef, docId, username }) => {
           value={comment}
           placeholder='Add a comment...'
           onChange={({ target }) => setComment(target.value)}
-          className='border-t border-gray-primary w-full outline-none px-4 py-3 text-sm'
+          className='border-t border-gray-primary w-full outline-none pl-4 pr-14 py-3 text-sm'
         />
-        <SubmitButton className='pr-2 text-blue-light absolute right-2' isValid={isValid}>Post</SubmitButton>
+        <SubmitButton className='pr-2 text-blue-light absolute h-full right-2' isValid={isValid}>Post</SubmitButton>
       </div>
     </form>
   )
