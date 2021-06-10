@@ -1,5 +1,6 @@
 import React, {useReducer, useEffect} from 'react'
 import { getPhotosById } from '../../services/firestore.services'
+import ProfileHeader from './profile-header.component'
 
 const Profile = ({ user }) => {
   const reducer = (state, newState) => ({ ...state, ...newState })
@@ -13,15 +14,20 @@ const Profile = ({ user }) => {
 
   useEffect(() => {
     const getPhotos = async () => {
-      const photos = await getPhotosById(user?.uid)
+      const photos = await getPhotosById(user.uid)
       dispatch({profile:user, photosCollection:photos, followersCount: user?.followers.length})
     }
 
     getPhotos()
   }, [user])
   return (
-    <div>
-      i am {user?.username}
+    <div className='relative top-20' >
+      <ProfileHeader
+        profile={profile}
+        photosCount={photosCollection?.length}
+        followersCount={followersCount}
+        dispatch={dispatch}
+      />
     </div>
   )
 }
