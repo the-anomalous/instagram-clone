@@ -7,11 +7,14 @@ import { signOut } from '../../services/firebase.auth.services'
 import Profile from '../../assets/profile.jpg'
 import UserAuthContext from '../../contexts/user-auth.context'
 import isLoadingContext from '../../contexts/is-loading.context'
+import useUser from '../../hooks/use-user.hook'
 
 const NavBar = () => {
   const history = useHistory()
   const user = useContext(UserAuthContext)
   const isLoading = useContext(isLoadingContext)
+  const userData = useUser()
+  
   return (
     isLoading ? (
       null
@@ -33,8 +36,8 @@ const NavBar = () => {
           <button
             type='button'
             className='btn-reset'>
-            <figure className='rounded-full w-7'>
-              <img src={user.photoURL || Profile} alt="profile avatar" className='rounded-full' />
+            <figure className='rounded-full w-7' onClick={() => history.push(`profile/${userData?.username}`)}>
+              <img src={user.photoURL || Profile} alt={`${userData?.username} profile`} className='rounded-full' />
             </figure>
           </button>
         </nav>

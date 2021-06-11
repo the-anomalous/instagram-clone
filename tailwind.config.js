@@ -11,7 +11,8 @@ module.exports = {
         '65': '17rem'
       },
       padding: {
-        '5px' : '5px'
+        '5px': '5px',
+        '10px':'10px'
       },
       width: {
         '81': '21rem',
@@ -24,6 +25,32 @@ module.exports = {
         'lg': '614px',
         'md': '580px',
         'sm': '500px'
+      },
+      animation: {
+        "zoom-in": "zoom-in .3s linear",
+        "zoom-out": "zoom-out .3s linear"
+      },
+      keyframes: {
+        "zoom-in": {
+          '0%': {
+            opacity: '0',
+            transform: 'translate(-50% , -50%) scale(.8)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translate(-50% , -50%) scale(1)'
+          }
+        },
+        "zoom-out": {
+          '100%': {
+            opacity: '0',
+            transform: 'translate(-50 % , -50 %) scale(.8)',
+          },
+          '0%': {
+            opacity: '1',
+            transform: 'translate(-50% , -50%) scale(1)'
+          }
+        }
       }
     },
     fill: (theme) => ({

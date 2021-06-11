@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { formatDistance } from 'date-fns'
-import CommentsModal from '../../modal/comments-modal.components'
+import CommentsModal from '../../modal/comments-modal.component'
 import { Link } from 'react-router-dom'
 
 const Comments = ({ comments, dateCreated, username, profilePhoto, caption, docId }) => {

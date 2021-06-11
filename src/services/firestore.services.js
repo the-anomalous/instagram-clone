@@ -44,12 +44,18 @@ export const getUserById = async uid => {
 }
 
 export const getSuggestedUsers = async userAuth => {
+  console.log(userAuth);
   try {
     const snapshot = await firestore.collection('users').limit('10').get()
     const suggestedUsers = snapshot
       .docs
       .map(doc => ({ ...doc.data()}))
       .filter((user, index) => index <= 5 && user.uid !== userAuth.uid && !user.followers.includes(userAuth.uid))
+    console.log(snapshot
+      .docs
+      .map(doc => ({
+        ...doc.data()
+      })));
       return suggestedUsers
   } catch (error) {
     console.log(error);
@@ -164,6 +170,23 @@ export const getPhotosById = async userId => {
       return photos
     }
     return null
+  } catch ({message}) {
+    console.log(message);
+  }
+}
+
+export const getUsernameAndProfile = async (userArray) => {
+  try {
+    const snapshot = await firestore
+    .collection('users')
+    .where('uid', 'in', userArray)
+    .get()
+    
+    const data = snapshot.docs.map(doc => {
+      const { username, photoURL, uid } = doc.data()
+      return {username, photoURL, docId:doc.id, userId:uid}
+    })
+    return data
   } catch ({message}) {
     console.log(message);
   }
