@@ -43,19 +43,14 @@ export const getUserById = async uid => {
   }
 }
 
-export const getSuggestedUsers = async userAuth => {
-  console.log(userAuth);
+export const getSuggestedUsers = async loggedInUser => {
+  console.log(loggedInUser);
   try {
     const snapshot = await firestore.collection('users').limit('10').get()
     const suggestedUsers = snapshot
       .docs
       .map(doc => ({ ...doc.data()}))
-      .filter((user, index) => index <= 5 && user.uid !== userAuth.uid && !user.followers.includes(userAuth.uid))
-    console.log(snapshot
-      .docs
-      .map(doc => ({
-        ...doc.data()
-      })));
+      .filter((user, index) => index <= 5 && user.uid !== loggedInUser.uid && !loggedInUser.following.includes(user.uid))
       return suggestedUsers
   } catch (error) {
     console.log(error);
