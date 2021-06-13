@@ -44,7 +44,6 @@ export const getUserById = async uid => {
 }
 
 export const getSuggestedUsers = async loggedInUser => {
-  console.log(loggedInUser);
   try {
     const snapshot = await firestore.collection('users').limit('10').get()
     const suggestedUsers = snapshot
@@ -57,21 +56,33 @@ export const getSuggestedUsers = async loggedInUser => {
   }
 }
 
-export const increaseFollowers = async (loggedInUserId, updateFollowersUserId) => {
+export const increaseFollowing = async (loggedInUserId, updateFollowingUserId) => {
   try {
-    firestore.doc(`users/${updateFollowersUserId}`).update({
+    const docRef = firestore.doc(`users/${loggedInUserId}`)
+    docRef.update({
+      following: FieldValue.arrayUnion(updateFollowingUserId)
+    })
+    firestore.doc(`users/${updateFollowingUserId}`).update({
       followers: FieldValue.arrayUnion(loggedInUserId)
     })
+    const { following, followers } = (await docRef.get()).data()
+    return {following, followers}
   } catch (error) {
     console.log(error);
   }
 }
 
-export const increaseFollowing = async (loggedInUserId, updateFollowingUserId) => {
+export const decreaseFollowing = async (loggedInUserId, updateFollowingUserId) => {
   try {
-    firestore.doc(`users/${loggedInUserId}`).update({
-      following: FieldValue.arrayUnion(updateFollowingUserId)
+    const docRef = firestore.doc(`users/${loggedInUserId}`)
+    await docRef.update({
+      following: FieldValue.arrayRemove(updateFollowingUserId)
     })
+    await firestore.doc(`users/${updateFollowingUserId}`).update({
+      followers: FieldValue.arrayRemove(loggedInUserId)
+    })
+    const { following, followers } = (await docRef.get()).data()
+    return {following, followers}
   } catch (error) {
     console.log(error);
   }

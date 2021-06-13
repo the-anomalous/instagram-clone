@@ -1,27 +1,28 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import ReactDOM from 'react-dom';
-import { ReactComponent as Cross } from '../../assets/icons/cross.svg'
-import { getUsernameAndProfile } from '../../services/firestore.services'
+import { ReactComponent as Cross } from '../../../assets/icons/cross.svg'
+import { getUsernameAndProfile } from '../../../services/firestore.services'
 import Skeleton from 'react-loading-skeleton';
-import Profile from '../../assets/profile.jpg'
-import { Link } from 'react-router-dom'
+import User from './user.component'
+import ProfileContext from '../../../contexts/profile.context'
 
-const ProfileModal = ({ setClose, following, followers, loggedInUser }) => {
+const ProfileModal = ({ setClose, following, followers, loggedInUser, setLoggedInUser }) => {
   const [open, setOpen] = useState(true)
   const [usernameAndPhoto, setUsernameAndPhoto] = useState(null)
+  const [{ profile }] = useContext(ProfileContext)
 
   useEffect(() => {
     const getData = async () => {
       if (following) {
-        const data = await getUsernameAndProfile(following)
+        const data = await getUsernameAndProfile(profile.following)
         setUsernameAndPhoto(data)
       } else {
-        const data = await getUsernameAndProfile(followers)
+        const data = await getUsernameAndProfile(profile.followers)
         setUsernameAndPhoto(data)
       }
     }
     getData()
-  }, [following, followers])
+  }, [following, followers, profile.following, profile.followers])
 
   return ReactDOM.createPortal(
     <>
@@ -44,23 +45,7 @@ const ProfileModal = ({ setClose, following, followers, loggedInUser }) => {
           {
             usernameAndPhoto && loggedInUser ? (
               usernameAndPhoto.map(({ username, photoURL, docId, userId}) => (
-                <div key={docId} className='grid grid-cols-5 self-center' style={{ marginBottom:'14px'}} >
-                  <figure className='w-full flex justify-center col-start-1 col-end-2 content-center' >
-                    <img src={photoURL || Profile} alt={`${username} profile`} className='rounded-full w-8 h-8' />
-                  </figure>
-                  <span className='text-sm font-semibold col-start-2 col-end-5 flex items-center' >
-                    <Link to={`/profile/${username}`}>
-                      {username}
-                    </Link>
-                  </span>
-                  {
-                    loggedInUser.uid !== userId && !loggedInUser.following.includes(userId) && (
-                      <button className='col-start-5 col-end-6 text-sm text-blue-light font-semibold' >
-                        Follow
-                      </button>
-                    )
-                  }
-                </div>
+                <User key={docId} isFollowing={following} setLoggedInUser={setLoggedInUser} username={username} photoUrl={photoURL} userId={userId} loggedInUser={loggedInUser} />
               ))
             ): (
               <Skeleton count={1}  />

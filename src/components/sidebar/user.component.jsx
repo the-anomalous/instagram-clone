@@ -12,7 +12,6 @@ const User = ({user}) => {
 
   const onClick = () => {
     setClicked(true);
-    increaseFollowers(userAuth.uid, uid)
     increaseFollowing(userAuth.uid, uid)
     setTimeout(() => setFollowed(true), 800)
   }
