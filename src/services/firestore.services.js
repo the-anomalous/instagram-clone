@@ -37,7 +37,7 @@ export const getUserById = async uid => {
   try {
     const docRef = firestore.doc(`users/${uid}`)
     const userData = await docRef.get()
-    return {...userData.data() }
+    return {...userData.data(), docId:userData.id }
   } catch (error) {
     console.log(error);
   }

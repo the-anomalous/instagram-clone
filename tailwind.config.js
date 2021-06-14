@@ -10,6 +10,9 @@ module.exports = {
       spacing: {
         '65': '17rem'
       },
+      stroke: {
+        white: '#fff'
+      },
       padding: {
         '5px': '5px',
         '10px':'10px'

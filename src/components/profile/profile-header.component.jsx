@@ -13,7 +13,6 @@ const ProfileHeader = () => {
   const { username, uid, photoURL, displayName, bio } = profile
   const activeUser = useUser()
   const [loggedInUser, setLoggedInUser] = useState(null)
-  const [isLoggedInUser, setIsLoggedInUser] = useState(false)
   const [isUserFollowingProfile, setIsUserFollowingProfile] = useState(false)
   const [isFollowerOpen, setIsFollowerOpen] = useState(false)
   const [isFollowingOpen, setIsFollowingOpen] = useState(false)
@@ -30,16 +29,15 @@ const ProfileHeader = () => {
 
   useEffect(() => {
     const checkUser = () => {
-      username && activeUser?.username === username && setIsLoggedInUser(true)
       uid && activeUser?.following.includes(uid) && setIsUserFollowingProfile(true)
       setLoggedInUser(activeUser)
     }
     checkUser()
-  }, [username, activeUser, uid])
+  }, [activeUser, uid])
 
   if (!loggedInUser) return <Skeleton count={1} />
   return (
-    <header className='mx-auto max-w-5xl grid grid-cols-3 max-w-screen-lg ' >
+    <header className='grid grid-cols-3 max-w-screen-lg mb-11' >
       <section className='container col-start-1 col-end-2 flex items-center justify-center ' >
         <figure className='w-36 h-36' >
           <img src={photoURL || Profile} alt={`${username} avatar`} className='w-full h-full rounded-full' />
@@ -79,13 +77,19 @@ const ProfileHeader = () => {
         <ul className="flex flex-row">
           <li style={{ marginRight: '6.4%' }} >
             {photosCollection?.length <= 1 ? (
-              <><span className='font-semibold'>{photosCollection?.length}</span> post</> 
+              <>
+                <span className='font-semibold'>{photosCollection?.length}</span> post
+              </>
             ) : (
-              <><span className='font-semibold'>{photosCollection?.length}</span> posts</>)}
+              <>
+                <span className='font-semibold'>{photosCollection?.length}</span> posts
+              </>)}
           </li>
           <li style={{ marginRight: '6.4%' }} className='cursor-pointer' onClick={() => setIsFollowerOpen(true)}>
             {followersCount <= 1 ? (
-              <><span className='font-semibold'>{followersCount}</span> follower</>
+              <>
+                <span className='font-semibold'>{followersCount}</span> follower
+               </>
             ) : (
               <><span className='font-semibold'>{followersCount}</span> followers</>)}
             {isFollowerOpen && <ProfileModal followers setLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} setClose={() => setIsFollowerOpen(false)} />}

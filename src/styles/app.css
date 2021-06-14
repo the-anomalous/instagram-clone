@@ -13148,6 +13148,10 @@ video {
   stroke: currentColor;
 }
 
+.stroke-white {
+  stroke: #fff;
+}
+
 .stroke-0 {
   stroke-width: 0;
 }
@@ -31691,6 +31695,10 @@ video {
     stroke: currentColor;
   }
 
+  .mobile-sm\:stroke-white {
+    stroke: #fff;
+  }
+
   .mobile-sm\:stroke-0 {
     stroke-width: 0;
   }
@@ -50062,6 +50070,10 @@ video {
 
   .sm\:stroke-current {
     stroke: currentColor;
+  }
+
+  .sm\:stroke-white {
+    stroke: #fff;
   }
 
   .sm\:stroke-0 {
@@ -68437,6 +68449,10 @@ video {
     stroke: currentColor;
   }
 
+  .md\:stroke-white {
+    stroke: #fff;
+  }
+
   .md\:stroke-0 {
     stroke-width: 0;
   }
@@ -86808,6 +86824,10 @@ video {
 
   .lg\:stroke-current {
     stroke: currentColor;
+  }
+
+  .lg\:stroke-white {
+    stroke: #fff;
   }
 
   .lg\:stroke-0 {

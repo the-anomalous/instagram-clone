@@ -1,8 +1,9 @@
 import React, {useReducer, useEffect} from 'react'
 import { getPhotosById } from '../../services/firestore.services'
-import ProfileHeader from './profile-header.component'
 import Skeleton from 'react-loading-skeleton';
 import ProfileContext from '../../contexts/profile.context'
+import ProfileHeader from './profile-header.component'
+import Posts from './posts.component'
 
 const Profile = ({ user }) => {
   const reducer = (state, newState) => ({ ...state, ...newState })
@@ -25,11 +26,12 @@ const Profile = ({ user }) => {
     getPhotos()
   }, [user])
   return (
-    <div className='relative top-20' >
+    <div className='relative top-20 mx-auto max-w-5xl px-7 ' >
       {
         profile ? (
           <ProfileContext.Provider value={[{ profile, photosCollection, followersCount, followingCount}, dispatch]} >
-            <ProfileHeader/>
+            <ProfileHeader />
+            <Posts/>
           </ProfileContext.Provider>
         ) : (
           <Skeleton count={1} />
