@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { ReactComponent as Home } from '../../assets/icons/home.svg';
 import { ReactComponent as SignOut } from '../../assets/icons/sign-out.svg';
-import { useHistory } from 'react-router-dom'
 import routes from '../../constants/routes'
 import { signOut } from '../../services/firebase.auth.services'
 import Profile from '../../assets/profile.jpg'
@@ -11,7 +10,6 @@ import useUser from '../../hooks/use-user.hook'
 import { Link } from 'react-router-dom'
 
 const NavBar = () => {
-  const history = useHistory()
   const user = useContext(UserAuthContext)
   const isLoading = useContext(isLoadingContext)
   const userData = useUser()

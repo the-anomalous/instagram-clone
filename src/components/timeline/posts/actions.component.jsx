@@ -1,16 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { ReactComponent as Comment } from '../../../assets/icons/comment.svg'
 import { ReactComponent as Like } from '../../../assets/icons/like.svg'
 import { updateLikes } from '../../../services/firestore.services'
+import UpdatePhoto from '../../../contexts/update-photo.context'
 
-const Actions = ({ userLikedPhoto, likes, userId, docId, inputRef}) => {
-  const [liked, setLiked] = useState(userLikedPhoto)
+const Actions = ({ likes, userId, docId, inputRef, modal }) => {
+  const [liked, setLiked] = useState(likes?.includes(userId))
   const [totalLikes, setTotalLikes] = useState(likes.length)
+  const updatePhoto = useContext(UpdatePhoto)
+  
 
-  const onClick = () => {
+  const onClick = async () => {
     setLiked((liked) => !liked)
     liked ? setTotalLikes(totalLikes => totalLikes - 1) : setTotalLikes(totalLikes => totalLikes + 1)
-    updateLikes(userId, liked, docId)
+    const updatedLikes = await updateLikes(userId, liked, docId)
+    modal && updatePhoto.updatePhotoLikes(updatedLikes);
   }
 
   return (

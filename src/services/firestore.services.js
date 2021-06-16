@@ -49,7 +49,7 @@ export const getSuggestedUsers = async loggedInUser => {
     const suggestedUsers = snapshot
       .docs
       .map(doc => ({ ...doc.data()}))
-      .filter((user, index) => index <= 5 && user.uid !== loggedInUser.uid && !loggedInUser.following.includes(user.uid))
+      .filter((user, index) => index <= 5 && user.uid !== loggedInUser?.uid && !loggedInUser?.following.includes(user.uid))
       return suggestedUsers
   } catch (error) {
     console.log(error);
@@ -121,24 +121,24 @@ export const getPhotos = async (following, uid) => {
 }
 
 export const updateLikes = async (userId, liked, docId) => {
-  const docRef = firestore.doc(`photos/${docId}`)
-
   try {
-    docRef.update({
+    await firestore.doc(`photos/${docId}`).update({
       likes: liked ? FieldValue.arrayRemove(userId) : FieldValue.arrayUnion(userId)
     })
+    const { likes } = (await firestore.doc(`photos/${docId}`).get()).data()
+    return likes
   } catch ({message}) {
     console.log(message);
   }
 }
 
-export const addComments = async (comment, displayName, docId) => {
-  const docRef = firestore.doc(`photos/${docId}`)
-  
+export const addComments = async (comment, displayName, docId) => { 
   try {
-    docRef.update({
+    firestore.doc(`photos/${docId}`).update({
       comments: FieldValue.arrayUnion({comment, displayName})
     })
+    const { comments } = (await firestore.doc(`photos/${docId}`).get()).data()
+    return comments
   } catch ({message}) {
     console.log(message);
   }
@@ -172,7 +172,7 @@ export const getPhotosById = async userId => {
         .where('userId', '==', userId)
         .get()
       
-      const photos = snapshot.docs.map(photo => ({ id:photo.id,  ...photo.data()}))
+      const photos = snapshot.docs.map(photo => ({ docId:photo.id,  ...photo.data()}))
       return photos
     }
     return null

@@ -3,7 +3,7 @@ import { getPhotosById } from '../../services/firestore.services'
 import Skeleton from 'react-loading-skeleton';
 import ProfileContext from '../../contexts/profile.context'
 import ProfileHeader from './profile-header.component'
-import Posts from './posts.component'
+import PostGrid from './post-grid.component'
 
 const Profile = ({ user }) => {
   const reducer = (state, newState) => ({ ...state, ...newState })
@@ -31,7 +31,7 @@ const Profile = ({ user }) => {
         profile ? (
           <ProfileContext.Provider value={[{ profile, photosCollection, followersCount, followingCount}, dispatch]} >
             <ProfileHeader />
-            <Posts/>
+            <PostGrid/>
           </ProfileContext.Provider>
         ) : (
           <Skeleton count={1} />

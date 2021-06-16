@@ -1,14 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { addComments } from '../../../services/firestore.services'
 import SubmitButton from '../../buttons/submit-btn.component'
+import UpdatePhoto from '../../../contexts/update-photo.context'
 
-const AddComment = ({ inputRef, docId, username }) => {
+const AddComment = ({ inputRef, docId, loggedInUsername, updateComments, modal }) => {
   const [comment, setComment] = useState('')
   const isValid = comment.length > 0
-
-  const onSubmit = event => {
+  const updatePhoto = useContext(UpdatePhoto)
+  
+  const onSubmit = async event => {
     event.preventDefault()
-    addComments(comment, username, docId)
+    updateComments({ comment, displayName:loggedInUsername})
+    const updatedComments = await addComments(comment, loggedInUsername, docId)
+    modal && updatePhoto.updatePhotoComments(updatedComments)
     setComment('')
   }
 
