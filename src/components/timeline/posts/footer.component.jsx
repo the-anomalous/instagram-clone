@@ -7,7 +7,7 @@ const Footer = ({ username, caption}) => {
       <Link to={`/profile/${username}`} >
         <span className='font-semibold -ml-1 mr-1' >{username}</span>
       </Link>
-      <span>{caption}</span>
+      <figcaption className='inline' >{caption}</figcaption>
     </footer>
   )
 }

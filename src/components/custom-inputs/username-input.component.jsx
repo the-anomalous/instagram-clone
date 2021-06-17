@@ -1,8 +1,8 @@
 import React from 'react'
 
-const UsernameInput = ({ usernameValue, setUsername }) => {
+const UsernameInput = ({ usernameValue, setUsername, className }) => {
   return (
-    <div>
+    <div className={`${className}`} >
       <input
         type="text"
         className='input-login'

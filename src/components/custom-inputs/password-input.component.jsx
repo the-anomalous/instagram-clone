@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 
-const PasswordInput = ({ passwordValue, setPassword }) => {
+const PasswordInput = ({ passwordValue, setPassword, className }) => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <div className="flex flex-row items-center relative	">
+    <div className={`flex flex-row items-center relative ${className}`}>
       <input
         type={!showPassword ? "password" : undefined}
         className='input-login'

@@ -1,8 +1,8 @@
 import React from 'react'
 
-const FullNameInput = ({fullNameValue, setFullName}) => {
+const FullNameInput = ({ fullNameValue, setFullName, className}) => {
   return (
-    <div>
+    <div className={`${className}`} >
       <input
         type="text"
         className='input-login'

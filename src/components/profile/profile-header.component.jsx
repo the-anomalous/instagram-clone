@@ -7,18 +7,19 @@ import Skeleton from 'react-loading-skeleton';
 import ProfileContext from '../../contexts/profile.context'
 import useUser from '../../hooks/use-user.hook'
 import { decreaseFollowing, increaseFollowing } from '../../services/firestore.services'
+import routes from '../../constants/routes'
+import { Link } from 'react-router-dom'
 
 const ProfileHeader = () => {
+  const activeUser = useUser()
   const [{ profile, photosCollection, followersCount, followingCount }] = useContext(ProfileContext)
   const { username, uid, photoURL, displayName, bio } = profile
-  const activeUser = useUser()
   const [loggedInUser, setLoggedInUser] = useState(null)
   const [isUserFollowingProfile, setIsUserFollowingProfile] = useState(false)
   const [isFollowerOpen, setIsFollowerOpen] = useState(false)
   const [isFollowingOpen, setIsFollowingOpen] = useState(false)
   
   const onClick = async () => {
-    console.log('fired');
     setIsUserFollowingProfile(() => !isUserFollowingProfile)
     if (isUserFollowingProfile) {
       decreaseFollowing(loggedInUser.uid, uid)
@@ -40,7 +41,7 @@ const ProfileHeader = () => {
     <header className='grid grid-cols-3 max-w-screen-lg mb-11' >
       <section className='container col-start-1 col-end-2 flex items-center justify-center ' >
         <figure className='w-36 h-36' >
-          <img src={photoURL || Profile} alt={`${username} avatar`} className='w-full h-full rounded-full' />
+          <img src={photoURL || Profile} alt={`${username} profile`} className='w-full h-full rounded-full' />
         </figure>
       </section>
       <section className='container col-start-2 col-end-4 flex flex-col justify-around' >
@@ -54,7 +55,7 @@ const ProfileHeader = () => {
                   className='focus:outline-none rounded border text-sm font-semibold outline-none'
                   style={{padding: '5px 9px'}}
                 >
-                  Edit Profile
+                  <Link to={routes.EDIT_PROFILE} >Edit Profile</Link>
                 </button>
               ): (
                 <button

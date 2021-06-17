@@ -4,6 +4,7 @@ const routes = {
   DASHBOARD: '/',
   PROFILE: '/profile/:username',
   NOT_FOUND: '/not-found',
+  EDIT_PROFILE: '/edit-profile',
   RESET_PASSWORD: '/password-reset'
 }
 

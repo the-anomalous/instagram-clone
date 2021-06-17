@@ -18,10 +18,14 @@ const PostGrid = () => {
 
       <div className='grid grid-cols-3 gap-6 mt-3 mb-10 ' >
         {
-          photosCollection?.length >= 1 ? (
-            photosCollection.map(photo => (
-              <Photo key={photo.docId} photo={{ ...photo, username: profile.username }} />
-            ))
+          photosCollection ? (
+            photosCollection.length >= 1 ? (
+              photosCollection.map(photo => (
+                <Photo key={photo.docId} photo={{ ...photo, username: profile.username }} />
+              ))
+            ) : (
+                <h3 className='col-start-1 col-end-4 font-semibold text-xl' >No Post Yet</h3>
+            )
           ): (
             <Skeleton height='320' count={1} />
           )

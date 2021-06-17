@@ -1,8 +1,8 @@
 import React from 'react'
 
-const EmailInput = ({emailValue, setEmail}) => {
+const EmailInput = ({emailValue, setEmail, className}) => {
   return (
-    <div>
+    <div className={`${className}`}>
       <input
         type="email"
         className='input-login'
