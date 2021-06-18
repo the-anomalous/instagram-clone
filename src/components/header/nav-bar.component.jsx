@@ -37,8 +37,8 @@ const NavBar = () => {
             type='button'
             className='btn-reset'>
             <Link to={`${routes.DASHBOARD}profile/${userData?.username}`}>
-              <figure className='rounded-full w-7'>
-                  <img src={user.photoURL || Profile} alt={`${userData?.username} profile`} className='rounded-full' />
+              <figure className='w-7 h-7'>
+                  <img src={userData?.profilePhotoURL || Profile} alt={`${userData?.username} profile`} className='rounded-full w-full h-full ' />
               </figure>
             </Link>
           </button>

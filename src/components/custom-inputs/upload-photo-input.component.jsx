@@ -9,10 +9,10 @@ const UploadPhotoInput = ({ setPhoto, className }) => {
         >Change Profile Photo</span>
       </label>
       <input
-        type="image"
-        alt='update profile'
+        type="file"
         name="upload-photo"
         id="upload-photo"
+        accept='.jpg, .jpeg, .png'
         className='hidden'
         onChange={(event) => setPhoto(event.target.files[0]) }
       />

@@ -21,7 +21,7 @@ const App = () => {
   const [user, loading] = useAuthState(auth);
   
   return (
-    <main>
+  <main>
       <isLoadingContext.Provider value={loading}>
         <UserAuthContext.Provider value={user}>
           <Suspense fallback={<Loading/>}>

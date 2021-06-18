@@ -1,4 +1,5 @@
 import { firestore, FieldValue } from '../lib/firebase'
+import {addProfilePhoto} from './storage.services'
 
 export const doesUsernameExists = async (username, setError) => {
   try {
@@ -21,6 +22,8 @@ export const createUserDocument = async (userAuth, username) => {
         createdAt: Date.now(),
         followers: [],
         following: [],
+        profilePhotoURL: '',
+        bio: '',
         username,
         displayName,
         email,
@@ -193,6 +196,22 @@ export const getUsernameAndProfile = async (userArray) => {
       return {username, photoURL, docId:doc.id, userId:uid}
     })
     return data
+  } catch ({message}) {
+    console.log(message);
+  }
+}
+
+export const updateProfile = async (imageFile, username, fullName, bio, userId) => {
+  const downloadURL = await addProfilePhoto(imageFile, userId)
+  const docRef = firestore.doc(`users/${userId}`)
+  
+  try {
+    await docRef.update({
+      username: username,
+      displayName: fullName,
+      bio: bio,
+      profilePhotoURL: downloadURL
+    })      
   } catch ({message}) {
     console.log(message);
   }

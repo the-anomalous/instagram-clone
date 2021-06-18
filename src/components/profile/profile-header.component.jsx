@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 const ProfileHeader = () => {
   const activeUser = useUser()
   const [{ profile, photosCollection, followersCount, followingCount }] = useContext(ProfileContext)
-  const { username, uid, photoURL, displayName, bio } = profile
+  const { username, uid, profilePhotoURL, displayName, bio } = profile
   const [loggedInUser, setLoggedInUser] = useState(null)
   const [isUserFollowingProfile, setIsUserFollowingProfile] = useState(false)
   const [isFollowerOpen, setIsFollowerOpen] = useState(false)
@@ -41,7 +41,7 @@ const ProfileHeader = () => {
     <header className='grid grid-cols-3 max-w-screen-lg mb-11' >
       <section className='container col-start-1 col-end-2 flex items-center justify-center ' >
         <figure className='w-36 h-36' >
-          <img src={photoURL || Profile} alt={`${username} profile`} className='w-full h-full rounded-full' />
+          <img src={profilePhotoURL || Profile} alt={`${username} profile`} className='w-full h-full rounded-full' />
         </figure>
       </section>
       <section className='container col-start-2 col-end-4 flex flex-col justify-around' >

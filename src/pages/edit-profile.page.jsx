@@ -15,7 +15,7 @@ const EditProfilePage = () => {
           user && (
             <div className='bg-white border border-gray-primary rounded-sm w-96 flex justify-center items-center flex-col ' >
               <figure className='w-28 h-28 mt-6 mb-2'>
-                <img src={user.profilePhoto || Profile} alt={`${user.username} profile`} className='w-full h-full rounded-full' />
+                <img src={user.profilePhotoURL || Profile} alt={`${user.username} profile`} className='w-full h-full rounded-full' />
               </figure>
 
               <EditProfileForm user={user}/>

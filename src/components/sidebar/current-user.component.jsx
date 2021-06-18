@@ -3,7 +3,7 @@ import Profile from '../../assets/profile.jpg'
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom'
 
-const CurrentUser = ({userData, userAuth}) => {
+const CurrentUser = ({userData}) => {
   return (
     <>
       {
@@ -11,7 +11,7 @@ const CurrentUser = ({userData, userAuth}) => {
           <section className='flex flex-row items-center mb-1 sm:hidden md:hidden mobile-sm:hidden' >
             <Link to={`/profile/${userData.username}`}>
               <figure>
-                <img src={userAuth?.photoURL || Profile} alt="user avatar" className='rounded-full w-16 h-16 ' />
+                <img src={userData?.profilePhotoURL || Profile} alt="user avatar" className='rounded-full w-16 h-16 ' />
               </figure>
             </Link>
 

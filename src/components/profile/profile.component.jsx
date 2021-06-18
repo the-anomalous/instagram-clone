@@ -33,7 +33,7 @@ const Profile = ({ user }) => {
             <ProfileHeader />
             <PostGrid/>
           </ProfileContext.Provider>
-        ) : (
+        ) : (  
           <Skeleton count={1} />
         )
       }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { formatDistance } from 'date-fns'
-import CommentsModal from '../../modal/comments-modal.component'
+import CommentsModal from '../../modal/comments-modal/comments-modal.component'
 import { Link } from 'react-router-dom'
 import AddComments from './add-comment.component'
 
-const Comments = ({ commentsArray, dateCreated, username, loggedInUsername, profilePhoto, caption, docId, inputRef, modal }) => {
+const Comments = ({ commentsArray, dateCreated, username, loggedInUsername, profilePhotoURL, caption, docId, inputRef, modal }) => {
   const [isOpen, setIsOpen] = useState(false) 
   const [comments, setComments] = useState(commentsArray) 
   
@@ -44,7 +44,7 @@ const Comments = ({ commentsArray, dateCreated, username, loggedInUsername, prof
       <time className=' text-gray-base uppercase ml-3 mb-2 inline-block ' style={{ fontSize: '10px' }} >{formatDistance(dateCreated, new Date())} ago</time>
       <AddComments inputRef={inputRef} docId={docId} loggedInUsername={loggedInUsername} updateComments={comment => setComments(() => [...comments, comment])} modal={modal}/>
 
-      { isOpen && <CommentsModal setClose={() => setIsOpen(false)} username={username} profilePhoto={profilePhoto} caption={caption} docId={docId} comments={comments} />}
+      { isOpen && <CommentsModal setClose={() => setIsOpen(false)} username={username} profilePhotoURL={profilePhotoURL} docId={docId} comments={comments} />}
     </div>
   )
 }
