@@ -209,9 +209,13 @@ export const updateProfile = async (imageFile, username, fullName, bio, userId) 
     await docRef.update({
       username: username,
       displayName: fullName,
-      bio: bio,
-      profilePhotoURL: downloadURL
-    })      
+      bio: bio
+    })
+    if (downloadURL) {
+      await docRef.update({
+        profilePhotoURL: downloadURL
+      })
+    }
   } catch ({message}) {
     console.log(message);
   }

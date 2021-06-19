@@ -9,7 +9,6 @@ const Comment = ({displayName, comment}) => {
   useEffect(() => {
     const getUser = async () => {
       const user = await getUserByUsername(displayName)
-      console.log(user);
       setUser(user[0])
     }
     getUser()

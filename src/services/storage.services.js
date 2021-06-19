@@ -9,11 +9,14 @@ const profilePhotoOptions = {
  
 export const addProfilePhoto = async (imageFile, userId) => {
   try {
-    const compressedImgFile = await imageCompression(imageFile, profilePhotoOptions)
-    const imageRef = storage.ref(`profilePhotos/${userId}`)
-    await imageRef.put(compressedImgFile)
-    const downloadURL = imageRef.getDownloadURL()
-    return downloadURL
+    if (imageFile) {
+      const compressedImgFile = await imageCompression(imageFile, profilePhotoOptions)
+      const imageRef = storage.ref(`profilePhotos/${userId}`)
+      await imageRef.put(compressedImgFile)
+      const downloadURL = imageRef.getDownloadURL()
+      return downloadURL
+    }
+    return null
   } catch ({message}) {
     console.log(message);
   }
