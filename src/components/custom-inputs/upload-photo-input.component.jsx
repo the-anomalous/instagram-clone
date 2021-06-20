@@ -1,12 +1,12 @@
 import React from 'react'
 
-const UploadPhotoInput = ({ setPhoto, className }) => {
+const UploadPhotoInput = ({ setPhoto, className, children }) => {
   return (
-    <div className={`${className}`} >
+    <div className='text-center' >
       <label htmlFor="upload-photo" >
         <span
-          className='font-semibold text-blue-light cursor-pointer btn-reset'
-        >Change Profile Photo</span>
+          className={`font-semibold cursor-pointer ${className} `}
+        >{children}</span>
       </label>
       <input
         type="file"

@@ -3,7 +3,7 @@ import imageCompression from 'browser-image-compression';
 
 const profilePhotoOptions = {
   maxSizeMB: 0.2,
-  maxWidthOrHeight: 280,
+  maxWidthOrHeight: 250,
   useWebWorker: true
 }
  

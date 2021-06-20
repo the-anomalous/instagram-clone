@@ -19,9 +19,7 @@ const EditProfileModal = ({ updating }) => {
             updating ? (
               <div className=' w-12 h-12 animate-spin rounded-full' style={{ border: '3px solid rgba(195, 195, 195, 0.6)', borderTopColor: '#636767' }} />
             ) : (
-              <div onLoad={() => setTimeout(() => history.push(routes.DASHBOARD), 1000) } >
-                <Success className=' w-11 mt-1 text-success '/>
-              </div>
+              <Success className=' w-11 mt-1 text-success '/>
             )
           }
           <span className='font-semibold mt-4' >{updating ? 'Updating...' : 'Updated' }</span>

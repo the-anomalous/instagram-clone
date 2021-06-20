@@ -45,7 +45,9 @@ const EditProfileForm = ({user}) => {
       <form className='flex justify-center items-center flex-col' method='post' onSubmit={onSubmit} >
         <UploadPhotoInput
           setPhoto={setPhoto}
-        />
+          className='btn-reset text-blue-light'
+        >Change Profile Photo</UploadPhotoInput>
+        
         {error && <p className='text-red-primary text-center mt-3 '>{error}</p> }
         <FullNameInput
           fullNameValue={fullName}

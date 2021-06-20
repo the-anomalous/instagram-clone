@@ -7,7 +7,6 @@ const BioInput = ({ bioValue, setBio, className }) => {
         type="text"
         className='input-login'
         placeholder='Bio'
-        name='username'
         value={bioValue}
         rows='3'
         onChange={({ target }) => setBio(target.value)} />

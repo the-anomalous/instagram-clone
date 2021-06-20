@@ -9,6 +9,8 @@ import useUser from '../../hooks/use-user.hook'
 import { decreaseFollowing, increaseFollowing } from '../../services/firestore.services'
 import routes from '../../constants/routes'
 import { Link } from 'react-router-dom'
+import { ReactComponent as Plus } from '../../assets/icons/plus.svg'
+import CreatePostModal from '../modal/create-post-modal.component'
 
 const ProfileHeader = () => {
   const activeUser = useUser()
@@ -18,6 +20,7 @@ const ProfileHeader = () => {
   const [isUserFollowingProfile, setIsUserFollowingProfile] = useState(false)
   const [isFollowerOpen, setIsFollowerOpen] = useState(false)
   const [isFollowingOpen, setIsFollowingOpen] = useState(false)
+  const [isCreatePostOpen, setIsCreatePostOpen] = useState(false)
   
   const onClick = async () => {
     setIsUserFollowingProfile(() => !isUserFollowingProfile)
@@ -48,15 +51,25 @@ const ProfileHeader = () => {
         
         <div className="flex flex-row items-center">
           <h2 style={{fontSize:'28px'}} className='font-light' >{username}</h2>
-          <div className='ml-5' >
+          <div className='ml-5 flex flex-row items-center ' >
             {
               loggedInUser.uid === uid ? (
-                <button
-                  className='focus:outline-none rounded border text-sm font-semibold outline-none'
-                  style={{padding: '5px 9px'}}
-                >
-                  <Link to={routes.EDIT_PROFILE} >Edit Profile</Link>
-                </button>
+                <>
+                  <button
+                    className='focus:outline-none rounded border text-sm font-semibold outline-none'
+                    style={{padding: '5px 9px'}}
+                  >
+                    <Link to={routes.EDIT_PROFILE} >Edit Profile</Link>
+                  </button>
+                  <button
+                    className='focus:outline-none rounded border text-sm font-semibold outline-none ml-3'
+                    style={{ padding: '3px' }}
+                    onClick={() => setIsCreatePostOpen(true)}
+                  >
+                    <Plus/>
+                  </button>
+                  {isCreatePostOpen && <CreatePostModal setClose={() => setIsCreatePostOpen(false)} /> }
+                </>
               ): (
                 <button
                   className={` focus:outline-none rounded text-sm font-semibold ${isUserFollowingProfile ? 'border' : 'bg-blue-light text-white'}`}
