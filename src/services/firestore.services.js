@@ -1,5 +1,5 @@
 import { firestore, FieldValue } from '../lib/firebase'
-import {addProfilePhoto} from './storage.services'
+import {addPhotoToStorage, addProfilePhoto} from './storage.services'
 
 export const doesUsernameExists = async (username, setError) => {
   try {
@@ -216,6 +216,24 @@ export const updateProfile = async (imageFile, username, fullName, bio, userId) 
         profilePhotoURL: downloadURL
       })
     }
+  } catch ({message}) {
+    console.log(message);
+  }
+}
+
+export const addPost = async (imageFile, caption, userId) => {
+  const downloadURL = await addPhotoToStorage(imageFile)
+  const colRef = firestore.collection('photos')
+  
+  try {
+    await colRef.add({
+      comments: [],
+      likes: [],
+      imageSrc: downloadURL,
+      dateCreated: Date.now(),
+      userId,
+      caption
+    })
   } catch ({message}) {
     console.log(message);
   }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const UploadPhotoInput = ({ setPhoto, className, children }) => {
   return (
-    <div className='text-center' >
+    <>
       <label htmlFor="upload-photo" >
         <span
           className={`font-semibold cursor-pointer ${className} `}
@@ -16,7 +16,7 @@ const UploadPhotoInput = ({ setPhoto, className, children }) => {
         className='hidden'
         onChange={(event) => setPhoto(event.target.files[0]) }
       />
-    </div>
+    </>
   )
 }
 
