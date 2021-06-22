@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { ReactComponent as Success } from '../../assets/icons/success.svg'
 import { useHistory } from 'react-router-dom'
 import routes from '../../constants/routes'
+import Spinner from '../spinner.component'
 
 const EditProfileModal = ({ updating }) => {
   const history = useHistory()
@@ -17,7 +18,7 @@ const EditProfileModal = ({ updating }) => {
         <div className='w-full flex flex-col justify-center items-center'>
           {
             updating ? (
-              <div className=' w-12 h-12 animate-spin rounded-full' style={{ border: '3px solid rgba(195, 195, 195, 0.6)', borderTopColor: '#636767' }} />
+              <Spinner/>
             ) : (
               <Success className=' w-11 mt-1 text-success '/>
             )
