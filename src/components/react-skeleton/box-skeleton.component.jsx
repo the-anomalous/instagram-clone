@@ -1,11 +1,9 @@
 import React from 'react'
 import Skeleton from 'react-loading-skeleton';
 
-const BoxSkeleton = ({className}) => {
+const BoxSkeleton = ({height, width}) => {
   return (
-    <div>
-      
-    </div>
+    <Skeleton height={height} width={width} />
   )
 }
 

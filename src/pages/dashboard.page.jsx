@@ -13,7 +13,7 @@ const Dashboard = () => {
       <Header />
       {
         user ? (
-          <section className='container grid grid-cols-3 gap-4 max-w-5xl mx-auto relative top-20 sm:grid-cols-1 mobile-sm:grid-cols-1 md:grid-cols-1' >
+          <section className='container grid grid-cols-3 gap-4 max-w-5xl mx-auto relative top-20 sm:grid-cols-1 mobile-sm:grid-cols-1 md:grid-cols-1 bg-gray-background' >
             <Timeline />
             <Sidebar/>
           </section>

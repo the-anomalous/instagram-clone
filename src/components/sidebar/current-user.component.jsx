@@ -1,6 +1,6 @@
 import React from 'react'
 import Profile from '../../assets/profile.jpg'
-import Skeleton from 'react-loading-skeleton';
+import AccountSkeleton from '../react-skeleton/account-skeleton';
 import { Link } from 'react-router-dom'
 
 const CurrentUser = ({userData}) => {
@@ -23,7 +23,7 @@ const CurrentUser = ({userData}) => {
             </div>
           </section>
         ) : (
-          <Skeleton count={1} height={70} className='sm:hidden md:hidden mobile-sm:hidden' />
+          <AccountSkeleton count={2} circleHeight={64} circleWidth={64} rowHeight={8} rowWidth={120} className='sm:hidden md:hidden mobile-sm:hidden flex flex-row ' />
         )
       }
     </>

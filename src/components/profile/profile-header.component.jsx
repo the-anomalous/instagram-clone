@@ -3,7 +3,7 @@ import Profile from '../../assets/profile.jpg'
 import { ReactComponent as User} from '../../assets/icons/user.svg'
 import { ReactComponent as Tick } from '../../assets/icons/tick.svg'
 import ProfileModal from '../modal/profile-modal/profile-modal.component'
-import Skeleton from 'react-loading-skeleton';
+import AccountSkeleton from '../react-skeleton/account-skeleton';
 import ProfileContext from '../../contexts/profile.context'
 import useUser from '../../hooks/use-user.hook'
 import { decreaseFollowing, increaseFollowing } from '../../services/firestore.services'
@@ -39,7 +39,11 @@ const ProfileHeader = () => {
     checkUser()
   }, [activeUser, uid])
 
-  if (!loggedInUser) return <Skeleton count={1} />
+  if (loggedInUser) {
+    return (
+      <AccountSkeleton count={3} circleHeight={144} circleWidth={144} rowHeight={8} rowWidth={300} className='flex flex-row' />
+    )
+  } 
   return (
     <header className='grid grid-cols-3 max-w-screen-lg mb-11' >
       <section className='container col-start-1 col-end-2 flex items-center justify-center ' >

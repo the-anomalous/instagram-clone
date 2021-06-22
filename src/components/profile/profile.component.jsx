@@ -28,13 +28,11 @@ const Profile = ({ user }) => {
   return (
     <div className='relative top-20 mx-auto max-w-5xl px-7 ' >
       {
-        profile ? (
+        profile && (
           <ProfileContext.Provider value={[{ profile, photosCollection, followersCount, followingCount}, dispatch]} >
             <ProfileHeader />
             <PostGrid/>
           </ProfileContext.Provider>
-        ) : (  
-          <Skeleton count={1} />
         )
       }
     </div>

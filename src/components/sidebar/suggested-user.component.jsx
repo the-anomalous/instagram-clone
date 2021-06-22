@@ -1,7 +1,7 @@
  import React, {useEffect, useState } from 'react'
 import { getSuggestedUsers } from '../../services/firestore.services'
 import User from './user.component'
-import Skeleton from 'react-loading-skeleton';
+import AccountSkeleton from '../react-skeleton/account-skeleton'
 import useUser from '../../hooks/use-user.hook'
 
 const SuggestedUser = () => {
@@ -29,7 +29,7 @@ const SuggestedUser = () => {
             )
           ) : (
               [...Array(5)].map((_, index) => (
-                <Skeleton count={1} key={index} className='w-8 h-8' />
+                <AccountSkeleton count={1} circleHeight={32} circleWidth={32} rowHeight={8} rowWidth={150} className='flex flex-row items-center mb-4' />
               ))
           ) 
         }
