@@ -23,7 +23,7 @@ const Post = ({ photo, modal }) => {
 
   if (!loggedInUser || !currentUser) return null
   return ( 
-    <div className={`bg-white rounded border border-gray-primary sm:w-11/12 mobile-sm:w-full ${!modal && 'mb-10'}`}>
+    <div className={`bg-white rounded border border-gray-primary sm:w-full ${!modal && 'mb-10'}`}>
       <PostHeader username={username} profilePhotoURL={currentUser.profilePhotoURL} />
       <Image src={imageSrc} modal={modal} />
       <Actions inputRef={inputRef} likes={likes} userId={loggedInUser.uid} docId={docId} modal={modal} />

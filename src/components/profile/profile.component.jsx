@@ -26,7 +26,7 @@ const Profile = ({ user }) => {
     getPhotos()
   }, [user])
   return (
-    <div className='relative top-20 mx-auto max-w-5xl px-7 ' >
+    <div className='relative top-20 mx-auto max-w-5xl px-7 md:px-4 mobile-sm:px-1 ' >
       {
         profile && (
           <ProfileContext.Provider value={[{ profile, photosCollection, followersCount, followingCount}, dispatch]} >

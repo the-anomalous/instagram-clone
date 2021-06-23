@@ -22,12 +22,14 @@ module.exports = {
         'lg': '614px',
         'md': '350px',
         'sm': '300px',
-        'sidebar': '23.3%'
+        'sidebar': '23.3%',
+        '120px': '120px'
       },
       height: {
         'lg': '614px',
         'md': '580px',
-        'sm': '500px'
+        'sm': '500px',
+        '120px': '120px'
       },
       animation: {
         "zoom-in": "zoom-in .3s linear",

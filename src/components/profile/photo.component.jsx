@@ -10,12 +10,12 @@ const Photo = ({ photo }) => {
 
   return (
     <div className='relative group cursor-pointer' >
-      <figure className='h-72 w-72' >
+      <figure className='h-72 w-full sm:h-28 sm:w-full' >
         <img src={photoData.imageSrc} alt={photoData.caption} className='w-full h-full' />
       </figure>
 
       <div
-        className='absolute bg-black-faded top-0 left-0 right-0 bottom-0 hidden group-hover:flex items-center justify-center flex-row'
+        className='absolute bg-black-faded top-0 left-0 right-0 bottom-0 hidden group-hover:flex items-center justify-center flex-row sm:hidden '
         onClick={() => setIsOpen(true)}
       >
         <div className='flex flex-row mr-4' >
