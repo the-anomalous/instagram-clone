@@ -39,9 +39,13 @@ const ProfileHeader = () => {
     checkUser()
   }, [activeUser, uid])
 
-  if (loggedInUser) {
+  if (!loggedInUser) {
     return (
-      <AccountSkeleton count={3} circleHeight={144} circleWidth={144} rowHeight={8} rowWidth={300} className='flex flex-row' />
+      <div className='grid grid-cols-3 max-w-screen-lg mb-11 ' >
+        <div className='col-start-1 col-end-3' >
+          <AccountSkeleton count={3} circleHeight={144} circleWidth={144} rowHeight={8} rowWidth={300} className='flex flex-row items-center justify-center ml-8 ' />
+        </div>
+      </div>
     )
   } 
   return (

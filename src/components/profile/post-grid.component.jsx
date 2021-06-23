@@ -2,7 +2,7 @@ import React, {useContext} from 'react'
 import ProfileContext from '../../contexts/profile.context'
 import { ReactComponent as Grid } from '../../assets/icons/grid.svg'
 import Photo from './photo.component'
-import Skeleton from 'react-loading-skeleton';
+import BoxSkeleton from '../react-skeleton/box-skeleton.component';
 
 const PostGrid = () => {
   const [{ photosCollection, profile }] = useContext(ProfileContext)
@@ -24,10 +24,10 @@ const PostGrid = () => {
                 <Photo key={photo.docId} photo={{ ...photo, username: profile.username }} />
               ))
             ) : (
-                <h3 className='col-start-1 col-end-4 font-semibold text-xl' >No Post Yet</h3>
+              <h3 className='col-start-1 col-end-4 font-semibold text-xl' >No Post Yet</h3>
             )
-          ): (
-            <Skeleton height='320' count={1} />
+          ) : (
+            [...Array(3)].map((_, index) => <BoxSkeleton key={index} height={288} width={288} count={1} />)
           )
         }
       </div>
