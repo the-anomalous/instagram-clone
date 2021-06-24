@@ -1,6 +1,5 @@
 import React, {useReducer, useEffect} from 'react'
 import { getPhotosById } from '../../services/firestore.services'
-import Skeleton from 'react-loading-skeleton';
 import ProfileContext from '../../contexts/profile.context'
 import ProfileHeader from './profile-header.component'
 import PostGrid from './post-grid.component'

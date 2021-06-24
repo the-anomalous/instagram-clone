@@ -5,9 +5,14 @@ import AddComment from '../../timeline/posts/add-comment.component'
 import { Link } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import Comment from './comment.component'
+import useUser from '../../../hooks/use-user.hook'
 
-const CommentsModal = ({ setClose, username, profilePhotoURL, docId, comments }) => {
+const CommentsModal = ({ setClose, username, profilePhotoURL, docId, commentsArray }) => {
+  const user = useUser()
   const [open, setOpen] = useState(true)
+  const [comments, setComments] = useState(commentsArray)
+
+  if (!user) return null
   return ReactDOM.createPortal(
     <>
       <div className='fixed top-0 bottom-0 bg-black-faded left-0 right-0 z-30 ' />
@@ -41,7 +46,7 @@ const CommentsModal = ({ setClose, username, profilePhotoURL, docId, comments })
           </ul>
         </section>
         <footer className='fixed bottom-0 right-0 left-0' >
-          <AddComment docId={docId} username={username} />
+          <AddComment docId={docId} loggedInUsername={user.username} updateComments={comment => setComments(() => [...comments, comment])} />
         </footer>
       </article>
     </>,

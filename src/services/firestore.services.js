@@ -135,7 +135,7 @@ export const updateLikes = async (userId, liked, docId) => {
   }
 }
 
-export const addComments = async (comment, displayName, docId) => { 
+export const addComments = async (comment, displayName, docId) => {
   try {
     firestore.doc(`photos/${docId}`).update({
       comments: FieldValue.arrayUnion({comment, displayName})

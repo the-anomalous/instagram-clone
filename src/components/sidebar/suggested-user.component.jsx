@@ -29,7 +29,7 @@ const SuggestedUser = () => {
             )
           ) : (
               [...Array(5)].map((_, index) => (
-                <AccountSkeleton count={1} circleHeight={32} circleWidth={32} rowHeight={8} rowWidth={150} className='flex flex-row items-center mb-4' />
+                <AccountSkeleton key={index*1000} count={1} circleHeight={32} circleWidth={32} rowHeight={8} rowWidth={150} className='flex flex-row items-center mb-4' />
               ))
           ) 
         }

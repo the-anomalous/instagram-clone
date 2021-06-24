@@ -2,7 +2,6 @@ import React, {useContext} from 'react'
 import ProfileContext from '../../contexts/profile.context'
 import { ReactComponent as Grid } from '../../assets/icons/grid.svg'
 import Photo from './photo.component'
-import BoxSkeleton from '../react-skeleton/box-skeleton.component';
 
 const PostGrid = () => {
   const [{ photosCollection, profile }] = useContext(ProfileContext)

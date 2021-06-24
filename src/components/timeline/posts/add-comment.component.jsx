@@ -10,7 +10,7 @@ const AddComment = ({ inputRef, docId, loggedInUsername, updateComments, modal }
   
   const onSubmit = async event => {
     event.preventDefault()
-    updateComments({ comment, displayName:loggedInUsername})
+    updateComments && updateComments({ comment, displayName:loggedInUsername})
     const updatedComments = await addComments(comment, loggedInUsername, docId)
     modal && updatePhoto.updatePhotoComments(updatedComments)
     setComment('')
@@ -18,16 +18,16 @@ const AddComment = ({ inputRef, docId, loggedInUsername, updateComments, modal }
 
   return (
     <form method='POST' onSubmit={onSubmit} className='mt-1' >
-      <div className='relative'>
+      <div className='flex items-center border-t border-gray-primary'>
         <input
           type="text"
           ref={inputRef}
           value={comment}
           placeholder='Add a comment...'
           onChange={({ target }) => setComment(target.value)}
-          className='border-t border-gray-primary w-full outline-none pl-4 pr-14 py-3 text-sm'
+          className=' w-full outline-none px-4 py-3 text-sm'
         />
-        <SubmitButton className='pr-2 text-blue-light absolute h-full right-2' isValid={isValid}>Post</SubmitButton>
+        <SubmitButton className='pr-2 text-blue-light h-full right-2' isValid={isValid}>Post</SubmitButton>
       </div>
     </form>
   )

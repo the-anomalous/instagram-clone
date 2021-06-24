@@ -20,7 +20,7 @@ const Timeline = () => {
           )
         ) : (
             [...Array(4)].map((_, index) => (
-              <>
+              <div key={index}>
                 <div className='rounded border border-gray-primary mb-10 bg-white sm:hidden ' >
                   <AccountSkeleton count={1} circleHeight={32} circleWidth={32} rowHeight={8} rowWidth={150} className='flex flex-row items-center mb-1 mt-2 ml-2 '/>
                   <BoxSkeleton width={500} height={600} />
@@ -29,7 +29,7 @@ const Timeline = () => {
                   <AccountSkeleton count={1} circleHeight={32} circleWidth={32} rowHeight={8} rowWidth={150} className='flex flex-row items-center mb-1 mt-2 ml-2 '/>
                   <BoxSkeleton width={300} height={400} />
                 </div>
-              </>
+              </div>
             ))
         )
       }
