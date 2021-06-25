@@ -30,6 +30,19 @@ const SignUpForm = () => {
 
   const onSubmit = async event => {
     event.preventDefault()
+    // eslint-disable-next-line no-useless-escape
+    if (/[~`!@#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/.test(username)) {
+      setError('You can only use alphabets, numbers and underscore in username')
+      setUsername('');
+      setTimeout(() => setError(''), 2000);
+      return null
+    }
+    if (username.indexOf(' ') >= 0) {
+      setError('You can only use alphabets, numbers and underscore in username')
+      setUsername('')
+      setTimeout(() => setError(''), 2000);
+      return null
+    }
     const usernameExists = await doesUsernameExists(username, setError)
     if (!usernameExists) {
       const success = await signUpWithEmail(email, password, fullName, username, setError)

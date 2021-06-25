@@ -21,13 +21,13 @@ const ProfileHeader = () => {
   const [isFollowerOpen, setIsFollowerOpen] = useState(false)
   const [isFollowingOpen, setIsFollowingOpen] = useState(false)
   const [isCreatePostOpen, setIsCreatePostOpen] = useState(false)
-  
+
   const onClick = async () => {
     setIsUserFollowingProfile(() => !isUserFollowingProfile)
     if (isUserFollowingProfile) {
       decreaseFollowing(loggedInUser.uid, uid)
     } else {
-      increaseFollowing(loggedInUser.uid, uid)
+      increaseFollowing(loggedInUser.uid, uid)  
     }
   }
 
@@ -35,8 +35,11 @@ const ProfileHeader = () => {
     const checkUser = () => {
       uid && activeUser?.following.includes(uid) && setIsUserFollowingProfile(true)
       setLoggedInUser(activeUser)
+      isFollowingOpen && setIsFollowingOpen(false)
+      isFollowerOpen && setIsFollowerOpen(false)
     }
     checkUser()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeUser, uid])
 
   if (!loggedInUser) {

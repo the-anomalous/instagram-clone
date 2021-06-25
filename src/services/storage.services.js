@@ -12,13 +12,17 @@ const PhotoOptions = {
   maxWidthOrHeight: 1280,
   useWebWorker: true
 }
+
+export const getCompressedProfilePhoto = async (imageFile) => {
+  const compressedImgFile = await imageCompression(imageFile, profilePhotoOptions)
+  return compressedImgFile
+}
  
 export const addProfilePhoto = async (imageFile, userId) => {
   try {
-    if (imageFile) {
-      const compressedImgFile = await imageCompression(imageFile, profilePhotoOptions)
+    if (typeof imageFile === 'object') {
       const imageRef = storage.ref(`profilePhotos/${userId}`)
-      await imageRef.put(compressedImgFile)
+      await imageRef.put(imageFile)
       return imageRef.getDownloadURL()
     }
     return null
@@ -27,7 +31,7 @@ export const addProfilePhoto = async (imageFile, userId) => {
   }
 }
 
-export const getCompressedImage = async imageFile => {
+export const getCompressedImage = async (imageFile) => {
   try {
     const compressedImgFile = await imageCompression(imageFile, PhotoOptions)
     return compressedImgFile

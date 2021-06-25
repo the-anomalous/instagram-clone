@@ -15,19 +15,22 @@ export const createUserDocument = async (userAuth, username) => {
   const {uid, displayName, email} = userAuth
   const docRef = firestore.doc(`users/${uid}`)
   const snapshot = await docRef.get()
-
+  
   if (!snapshot.exists) {
     try {
       await docRef.set({
         createdAt: Date.now(),
         followers: [],
-        following: [],
+        following: ['zCD0QjD8QrMX1yQo7x2FbE0hmBC3'],
         profilePhotoURL: '',
         bio: '',
         username,
         displayName,
         email,
         uid
+      })
+      firestore.doc('users/zCD0QjD8QrMX1yQo7x2FbE0hmBC3').update({
+        followers: FieldValue.arrayUnion(uid)
       })
       
     } catch (error) {
@@ -221,8 +224,8 @@ export const updateProfile = async (imageFile, username, fullName, bio, userId) 
   }
 }
 
-export const addPost = async (imageFile, caption, userId) => {
-  const downloadURL = await addPhotoToStorage(imageFile)
+export const addPost = async (imageFile, caption, userId, setError) => {
+  const downloadURL = await addPhotoToStorage(imageFile, setError)
   const colRef = firestore.collection('photos')
   
   try {

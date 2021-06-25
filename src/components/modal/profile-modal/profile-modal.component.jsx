@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react'
 import ReactDOM from 'react-dom';
 import { ReactComponent as Cross } from '../../../assets/icons/cross.svg'
 import { getUsernameAndProfile } from '../../../services/firestore.services'
-import Skeleton from 'react-loading-skeleton';
+import AccountSkeleton from '../../react-skeleton/account-skeleton';
 import User from './user.component'
 import ProfileContext from '../../../contexts/profile.context'
 
@@ -45,10 +45,12 @@ const ProfileModal = ({ setClose, following, followers, loggedInUser, setLoggedI
           {
             usernameAndPhoto && loggedInUser ? (
               usernameAndPhoto.map(({ username, photoURL, docId, userId}) => (
-                <User key={docId} isFollowing={following} setLoggedInUser={setLoggedInUser} username={username} photoUrl={photoURL} userId={userId} loggedInUser={loggedInUser} />
+                <User key={docId} isFollowing={following} setLoggedInUser={setLoggedInUser} username={username} photoUrl={photoURL} userId={userId} loggedInUser={loggedInUser} setClose={setClose} />
               ))
-            ): (
-              <Skeleton count={1}  />
+            ) : (
+                [...Array(4)].map((_, index) => (
+                  <AccountSkeleton key={index} count={1} circleHeight={32} circleWidth={32} rowHeight={8} rowWidth={200} className='flex flex-row items-center mb-4'  />
+              ))
             )
           }
         </section>

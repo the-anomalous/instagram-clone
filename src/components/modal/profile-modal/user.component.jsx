@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { decreaseFollowing, increaseFollowing } from '../../../services/firestore.services';
 import ProfileContext from '../../../contexts/profile.context'
 
-const User = ({ username, photoURL, userId, loggedInUser, setLoggedInUser}) => {
+const User = ({ username, photoURL, userId, loggedInUser, setLoggedInUser, setClose}) => {
   const history = useHistory()
   const [userData, dispatch] = useContext(ProfileContext)
   const [following, setFollowing] = useState(loggedInUser.following.includes(userId))
@@ -37,6 +37,7 @@ const User = ({ username, photoURL, userId, loggedInUser, setLoggedInUser}) => {
       <span
         className='text-sm font-semibold col-start-2 col-end-5 flex items-center cursor-pointer'
         onClick={() => {
+          console.log(setClose)
           history.push(`/profile/${username}`)
         } }>
         {username}

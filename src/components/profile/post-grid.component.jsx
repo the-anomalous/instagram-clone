@@ -23,7 +23,7 @@ const PostGrid = () => {
                 <Photo key={photo.docId} photo={{ ...photo, username: profile.username }} />
               ))
             ) : (
-              <h3 className='col-start-1 col-end-4 font-semibold text-xl' >No Post Yet</h3>
+              <h3 className='col-start-1 col-end-4 font-semibold text-xl text-center' >No Post Yet</h3>
             )
           )
         }

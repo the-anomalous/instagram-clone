@@ -13,15 +13,21 @@ const CreatePostForm = ({ setOpenFalse, setClose, user}) => {
   const [compressedPhotoUrl, setCompressedPhotoUrl] = useState(null)
   const [caption, setCaption] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const compressedPhotoRef = useRef(null)
   const history = useHistory()
 
   useEffect(() => {
     const getPhoto = async () => {
       setLoading(true)
-      const compressedImage = await getCompressedImage(photo)
-      compressedPhotoRef.current = compressedImage
-      setCompressedPhotoUrl(URL.createObjectURL(compressedImage))
+      try {
+        const compressedImage = await getCompressedImage(photo)
+        compressedPhotoRef.current = compressedImage
+        setCompressedPhotoUrl(URL.createObjectURL(compressedImage))
+      } catch ({message}) {
+        setError('The file given is not an image')
+        setTimeout(() => setError(''), 2000);
+      }
       setLoading(false)
     }
     if (photo) {
@@ -48,6 +54,7 @@ const CreatePostForm = ({ setOpenFalse, setClose, user}) => {
         )
       }
       <form method="post" style={{ minHeight: '250px' }} className='relative' onSubmit={onSubmit} >
+        {error && <p className='text-red-primary text-center mt-3 mx-1 '>{error}</p>}
         <div className='flex justify-center items-center' style={{ minHeight: '120px' }} >
           {
             compressedPhotoUrl ? (
