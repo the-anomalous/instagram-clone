@@ -18,7 +18,7 @@ const ProtectedDashboardRoute = ({ pathName, user, children, loading, ...rest })
 
       if (!user) {
         return (
-          <Redirect to={routes.LOGIN_PAGE} />
+          <Redirect to={routes.SIGN_UP} />
         )
       }
     }}
