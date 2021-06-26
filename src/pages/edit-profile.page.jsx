@@ -7,7 +7,8 @@ import EditProfileForm from '../components/forms/edit-profile-form.component'
 const EditProfilePage = () => {
   const user = useUser()
   const [photoUrl, setPhotoUrl] = useState()
-
+  
+  useEffect(() => document.title = 'Instagram - Edit Profile' , [])
   useEffect(() => setPhotoUrl(() => user?.profilePhotoURL), [user])
 
   return (

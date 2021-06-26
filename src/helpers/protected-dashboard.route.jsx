@@ -12,7 +12,6 @@ const ProtectedDashboardRoute = ({ pathName, user, children, loading, ...rest })
       if (loading) {
         return <Loading/>
       }
-
       if (user) {
         return children
       }
@@ -22,7 +21,6 @@ const ProtectedDashboardRoute = ({ pathName, user, children, loading, ...rest })
           <Redirect to={routes.LOGIN_PAGE} />
         )
       }
-      return null
     }}
   />
 )}

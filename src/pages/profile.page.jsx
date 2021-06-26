@@ -11,6 +11,8 @@ const ProfilePage = () => {
   const [user, setUser] = useState(undefined)
   const history = useHistory()
   
+  useEffect(() => document.title = `Instagram - ${username}`, [username])
+  
   useEffect(() => {
     const getUser = async () => {
       const user = await getUserByUsername(username)

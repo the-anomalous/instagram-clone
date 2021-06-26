@@ -99,7 +99,7 @@ const EditProfileForm = ({user, setPhotoUrl}) => {
         />
         <SubmitButton className='my-3 w-65 bg-blue-light text-white px-2 py-5px rounded btn-reset mt-7' isValid>Update Profile</SubmitButton>
       </form>
-      {isOpen && <EditProfileModal updating={updating} />}
+      {isOpen && <EditProfileModal updating={updating} username={username} />}
     </div>
   )
 }

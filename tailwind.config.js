@@ -1,12 +1,10 @@
 module.exports = {
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.jsx', './src/*.jsx', './src/**/**/*.jsx', './src/**/**/**/*.jsx']
+  },
   future: {
     removeDeprecatedGapUtilities: true
-  },
-  purge: {
-    content: ['./src/*.js',
-      './src/**/*.js',
-      './src/**/*.jsx',
-      './src/**/**/*.jsx']
   },
   theme: {
     extend: {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 import logo from '../assets/logo.png'
@@ -8,6 +8,8 @@ import routes from '../constants/routes'
 import Divider from '../components/divider.component'
 
 const SignUpPage = () => {
+  useEffect(() => document.title = 'Instagram - Sign Up', [])
+
   return (
     <article className='flex flex-col items-center justify-center h-screen bg-gray-background' >
       <section className=' bg-white rounded-sm border border-gray-primary

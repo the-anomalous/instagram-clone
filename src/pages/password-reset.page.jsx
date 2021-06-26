@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { ReactComponent as Lock } from '../assets/icons/lock.svg'
 import { useHistory } from 'react-router-dom'
 import routes from '../constants/routes'
@@ -6,6 +6,8 @@ import ResetPasswordForm from '../components/forms/reset-password-form.component
 
 const PasswordReset = () => {
   const history = useHistory()
+
+  useEffect(() => document.title = 'Instagram - Password reset' , [])
 
   return (
     <article className='flex items-center justify-center h-screen bg-gray-background' >

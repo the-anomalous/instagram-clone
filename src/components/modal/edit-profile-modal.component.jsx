@@ -2,13 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import { ReactComponent as Success } from '../../assets/icons/success.svg'
 import { useHistory } from 'react-router-dom'
-import routes from '../../constants/routes'
 import Spinner from '../spinner.component'
 
-const EditProfileModal = ({ updating }) => {
+const EditProfileModal = ({ updating, username }) => {
   const history = useHistory()
   if (!updating) {
-    setTimeout(() => history.push(routes.DASHBOARD), 1000) 
+    setTimeout(() => history.push(`/profile/${username}`), 1000)
   }
   return ReactDOM.createPortal(
     <>
