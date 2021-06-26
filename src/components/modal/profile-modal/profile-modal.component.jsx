@@ -44,8 +44,8 @@ const ProfileModal = ({ setClose, following, followers, loggedInUser, setLoggedI
         <section className='fixed overflow-auto right-0 left-0 bottom-0 p-4' style={{top:'49px'}} >
           {
             usernameAndPhoto && loggedInUser ? (
-              usernameAndPhoto.map(({ username, photoURL, docId, userId}) => (
-                <User key={docId} isFollowing={following} setLoggedInUser={setLoggedInUser} username={username} photoUrl={photoURL} userId={userId} loggedInUser={loggedInUser} setClose={setClose} />
+              usernameAndPhoto.map(({ username, profilePhotoURL, docId, userId}) => (
+                <User key={docId} isFollowing={following} setLoggedInUser={setLoggedInUser} username={username} profilePhotoURL={profilePhotoURL} userId={userId} loggedInUser={loggedInUser} setClose={setClose} />
               ))
             ) : (
                 [...Array(4)].map((_, index) => (

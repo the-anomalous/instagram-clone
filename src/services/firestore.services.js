@@ -195,8 +195,8 @@ export const getUsernameAndProfile = async (userArray) => {
     .get()
     
     const data = snapshot.docs.map(doc => {
-      const { username, photoURL, uid } = doc.data()
-      return {username, photoURL, docId:doc.id, userId:uid}
+      const { username, profilePhotoURL, uid } = doc.data()
+      return {username, profilePhotoURL, docId:doc.id, userId:uid}
     })
     return data
   } catch ({message}) {
