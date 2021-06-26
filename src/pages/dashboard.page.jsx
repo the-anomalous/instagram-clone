@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import Header from '../components/header/header.component'
 import Loading from '../components/loading.component'
 import Sidebar from '../components/sidebar/sidebar.component'
@@ -7,6 +7,8 @@ import UserAuthContext from '../contexts/user-auth.context'
 
 const Dashboard = () => {
   const user = useContext(UserAuthContext)
+
+  useEffect(() => document.title = 'Instagram' , [])
 
   return (
     <div className='bg-gray-background' >
