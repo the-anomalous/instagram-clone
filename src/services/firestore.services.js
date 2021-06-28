@@ -189,16 +189,35 @@ export const getPhotosById = async userId => {
 
 export const getUsernameAndProfile = async (userArray) => {
   try {
-    const snapshot = await firestore
-    .collection('users')
-    .where('uid', 'in', userArray)
-    .get()
-    
-    const data = snapshot.docs.map(doc => {
-      const { username, profilePhotoURL, uid } = doc.data()
-      return {username, profilePhotoURL, docId:doc.id, userId:uid}
-    })
-    return data
+    if (userArray.length <= 10) {
+      const snapshot = await firestore
+      .collection('users')
+      .where('uid', 'in', userArray)
+      .get()
+      
+      const data = snapshot.docs.map(doc => {
+        const { username, profilePhotoURL, uid } = doc.data()
+        return {username, profilePhotoURL, docId:doc.id, userId:uid}
+      })
+      return data
+    } else {
+      const data = []
+      while (userArray.length) {
+        const batch = userArray.splice(0, 10)
+        if (batch.length) {
+          const snapshot = await firestore
+            .collection('users')
+            .where('uid', 'in', batch)
+            .get()
+  
+          snapshot.docs.forEach(doc => {
+            const { username,profilePhotoURL,uid} = doc.data()
+            data.push({username,profilePhotoURL,docId: doc.id,userId: uid})
+          })
+        }
+      }
+      return data
+    }
   } catch ({message}) {
     console.log(message);
   }
