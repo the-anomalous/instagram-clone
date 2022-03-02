@@ -1,4 +1,4 @@
-# **Instagram Clone**
+# **Instagram Clone**  ![Trillo](./public/favicon.ico)
 
 ### Summary :
 
@@ -10,4 +10,4 @@
 - Tailwind css
 - Browser image compression for image compression
 
-Visit [Instagram Clone](https://instagram-clone-tau-seven.vercel.app/)
+Visit [Instagram Clone](https://instagram-clone-tau-seven.vercel.app/) 
